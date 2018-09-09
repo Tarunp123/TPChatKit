@@ -1,0 +1,643 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1923213D432100B677A9 /* TPChatView.swift */; };
+		EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */; };
+		EE664086212EEA6D008C8B45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE664085212EEA6D008C8B45 /* Extensions.swift */; };
+		EE664088212FEF5A008C8B45 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE664087212FEF5A008C8B45 /* Constants.swift */; };
+		EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66408A212FF39F008C8B45 /* TPMessage.swift */; };
+		EE66408D212FF3C7008C8B45 /* TPPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66408C212FF3C7008C8B45 /* TPPerson.swift */; };
+		EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66409121330A72008C8B45 /* TPTextMessage.swift */; };
+		EE66409421330BFD008C8B45 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE66409321330BFD008C8B45 /* Enums.swift */; };
+		EE9702992108AA3500A3E3BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9702982108AA3500A3E3BF /* AppDelegate.swift */; };
+		EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE97029A2108AA3500A3E3BF /* TPChatViewController.swift */; };
+		EE97029E2108AA3500A3E3BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE97029C2108AA3500A3E3BF /* Main.storyboard */; };
+		EE9702A02108AA3500A3E3BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EE97029F2108AA3500A3E3BF /* Assets.xcassets */; };
+		EE9702A32108AA3500A3E3BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EE9702A12108AA3500A3E3BF /* LaunchScreen.storyboard */; };
+		EE9702AE2108AA3500A3E3BF /* MessagingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9702AD2108AA3500A3E3BF /* MessagingAppTests.swift */; };
+		EE9702B92108AA3500A3E3BF /* MessagingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9702B82108AA3500A3E3BF /* MessagingAppUITests.swift */; };
+		EE9702C72108BCD300A3E3BF /* TPMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */; };
+		EEE50832213FFB3F00A41592 /* TPChatViewToolbarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEE50831213FFB3F00A41592 /* TPChatViewToolbarVC.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EE9702AA2108AA3500A3E3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE97028D2108AA3500A3E3BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE9702942108AA3500A3E3BF;
+			remoteInfo = MessagingApp;
+		};
+		EE9702B52108AA3500A3E3BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EE97028D2108AA3500A3E3BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EE9702942108AA3500A3E3BF;
+			remoteInfo = MessagingApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		EE2C1923213D432100B677A9 /* TPChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatView.swift; sourceTree = "<group>"; };
+		EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatViewToolbar.swift; sourceTree = "<group>"; };
+		EE664085212EEA6D008C8B45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		EE664087212FEF5A008C8B45 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		EE66408A212FF39F008C8B45 /* TPMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPMessage.swift; sourceTree = "<group>"; };
+		EE66408C212FF3C7008C8B45 /* TPPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPPerson.swift; sourceTree = "<group>"; };
+		EE66409121330A72008C8B45 /* TPTextMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTextMessage.swift; sourceTree = "<group>"; };
+		EE66409321330BFD008C8B45 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		EE9702952108AA3500A3E3BF /* TPChatKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TPChatKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9702982108AA3500A3E3BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		EE97029A2108AA3500A3E3BF /* TPChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatViewController.swift; sourceTree = "<group>"; };
+		EE97029D2108AA3500A3E3BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		EE97029F2108AA3500A3E3BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EE9702A22108AA3500A3E3BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		EE9702A42108AA3500A3E3BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE9702A92108AA3500A3E3BF /* TPChatKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPChatKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9702AD2108AA3500A3E3BF /* MessagingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingAppTests.swift; sourceTree = "<group>"; };
+		EE9702AF2108AA3500A3E3BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE9702B42108AA3500A3E3BF /* TPChatKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TPChatKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE9702B82108AA3500A3E3BF /* MessagingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingAppUITests.swift; sourceTree = "<group>"; };
+		EE9702BA2108AA3500A3E3BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		EEE50831213FFB3F00A41592 /* TPChatViewToolbarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatViewToolbarVC.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		EE9702922108AA3500A3E3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702A62108AA3500A3E3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702B12108AA3500A3E3BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		EE664089212FF392008C8B45 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				EE66408A212FF39F008C8B45 /* TPMessage.swift */,
+				EE66408C212FF3C7008C8B45 /* TPPerson.swift */,
+				EE66409121330A72008C8B45 /* TPTextMessage.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		EE6640902132D372008C8B45 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				EE66409321330BFD008C8B45 /* Enums.swift */,
+				EE664085212EEA6D008C8B45 /* Extensions.swift */,
+				EE9702982108AA3500A3E3BF /* AppDelegate.swift */,
+				EE664087212FEF5A008C8B45 /* Constants.swift */,
+			);
+			path = Global;
+			sourceTree = "<group>";
+		};
+		EE8774A921352D5500AC91D0 /* MessageCells */ = {
+			isa = PBXGroup;
+			children = (
+				EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */,
+			);
+			path = MessageCells;
+			sourceTree = "<group>";
+		};
+		EE8774AA21352D7600AC91D0 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		EE97028C2108AA3500A3E3BF = {
+			isa = PBXGroup;
+			children = (
+				EE9702972108AA3500A3E3BF /* TPChatKit */,
+				EE9702AC2108AA3500A3E3BF /* TPChatKitTests */,
+				EE9702B72108AA3500A3E3BF /* TPChatKitUITests */,
+				EE9702962108AA3500A3E3BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EE9702962108AA3500A3E3BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				EE9702952108AA3500A3E3BF /* TPChatKit.app */,
+				EE9702A92108AA3500A3E3BF /* TPChatKitTests.xctest */,
+				EE9702B42108AA3500A3E3BF /* TPChatKitUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		EE9702972108AA3500A3E3BF /* TPChatKit */ = {
+			isa = PBXGroup;
+			children = (
+				EE664089212FF392008C8B45 /* Model */,
+				EE8774A921352D5500AC91D0 /* MessageCells */,
+				EE6640902132D372008C8B45 /* Global */,
+				EE97029A2108AA3500A3E3BF /* TPChatViewController.swift */,
+				EE2C1923213D432100B677A9 /* TPChatView.swift */,
+				EEE50833213FFB4700A41592 /* Toolbar */,
+				EE8774AA21352D7600AC91D0 /* Protocols */,
+				EE97029C2108AA3500A3E3BF /* Main.storyboard */,
+				EE97029F2108AA3500A3E3BF /* Assets.xcassets */,
+				EE9702A12108AA3500A3E3BF /* LaunchScreen.storyboard */,
+				EE9702A42108AA3500A3E3BF /* Info.plist */,
+			);
+			path = TPChatKit;
+			sourceTree = "<group>";
+		};
+		EE9702AC2108AA3500A3E3BF /* TPChatKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				EE9702AD2108AA3500A3E3BF /* MessagingAppTests.swift */,
+				EE9702AF2108AA3500A3E3BF /* Info.plist */,
+			);
+			path = TPChatKitTests;
+			sourceTree = "<group>";
+		};
+		EE9702B72108AA3500A3E3BF /* TPChatKitUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EE9702B82108AA3500A3E3BF /* MessagingAppUITests.swift */,
+				EE9702BA2108AA3500A3E3BF /* Info.plist */,
+			);
+			path = TPChatKitUITests;
+			sourceTree = "<group>";
+		};
+		EEE50833213FFB4700A41592 /* Toolbar */ = {
+			isa = PBXGroup;
+			children = (
+				EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */,
+				EEE50831213FFB3F00A41592 /* TPChatViewToolbarVC.swift */,
+			);
+			path = Toolbar;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		EE9702942108AA3500A3E3BF /* TPChatKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE9702BD2108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKit" */;
+			buildPhases = (
+				EE9702912108AA3500A3E3BF /* Sources */,
+				EE9702922108AA3500A3E3BF /* Frameworks */,
+				EE9702932108AA3500A3E3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TPChatKit;
+			productName = MessagingApp;
+			productReference = EE9702952108AA3500A3E3BF /* TPChatKit.app */;
+			productType = "com.apple.product-type.application";
+		};
+		EE9702A82108AA3500A3E3BF /* TPChatKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE9702C02108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKitTests" */;
+			buildPhases = (
+				EE9702A52108AA3500A3E3BF /* Sources */,
+				EE9702A62108AA3500A3E3BF /* Frameworks */,
+				EE9702A72108AA3500A3E3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE9702AB2108AA3500A3E3BF /* PBXTargetDependency */,
+			);
+			name = TPChatKitTests;
+			productName = MessagingAppTests;
+			productReference = EE9702A92108AA3500A3E3BF /* TPChatKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		EE9702B32108AA3500A3E3BF /* TPChatKitUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE9702C32108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKitUITests" */;
+			buildPhases = (
+				EE9702B02108AA3500A3E3BF /* Sources */,
+				EE9702B12108AA3500A3E3BF /* Frameworks */,
+				EE9702B22108AA3500A3E3BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE9702B62108AA3500A3E3BF /* PBXTargetDependency */,
+			);
+			name = TPChatKitUITests;
+			productName = MessagingAppUITests;
+			productReference = EE9702B42108AA3500A3E3BF /* TPChatKitUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		EE97028D2108AA3500A3E3BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Tarun Prajapati";
+				TargetAttributes = {
+					EE9702942108AA3500A3E3BF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					EE9702A82108AA3500A3E3BF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EE9702942108AA3500A3E3BF;
+					};
+					EE9702B32108AA3500A3E3BF = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = EE9702942108AA3500A3E3BF;
+					};
+				};
+			};
+			buildConfigurationList = EE9702902108AA3500A3E3BF /* Build configuration list for PBXProject "TPChatKit" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = EE97028C2108AA3500A3E3BF;
+			productRefGroup = EE9702962108AA3500A3E3BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				EE9702942108AA3500A3E3BF /* TPChatKit */,
+				EE9702A82108AA3500A3E3BF /* TPChatKitTests */,
+				EE9702B32108AA3500A3E3BF /* TPChatKitUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		EE9702932108AA3500A3E3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE9702A32108AA3500A3E3BF /* LaunchScreen.storyboard in Resources */,
+				EE9702A02108AA3500A3E3BF /* Assets.xcassets in Resources */,
+				EE97029E2108AA3500A3E3BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702A72108AA3500A3E3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702B22108AA3500A3E3BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		EE9702912108AA3500A3E3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE664088212FEF5A008C8B45 /* Constants.swift in Sources */,
+				EE9702C72108BCD300A3E3BF /* TPMessageCollectionViewCell.swift in Sources */,
+				EE66408D212FF3C7008C8B45 /* TPPerson.swift in Sources */,
+				EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */,
+				EEE50832213FFB3F00A41592 /* TPChatViewToolbarVC.swift in Sources */,
+				EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */,
+				EE66409421330BFD008C8B45 /* Enums.swift in Sources */,
+				EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */,
+				EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */,
+				EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */,
+				EE9702992108AA3500A3E3BF /* AppDelegate.swift in Sources */,
+				EE664086212EEA6D008C8B45 /* Extensions.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702A52108AA3500A3E3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE9702AE2108AA3500A3E3BF /* MessagingAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EE9702B02108AA3500A3E3BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EE9702B92108AA3500A3E3BF /* MessagingAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE9702AB2108AA3500A3E3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE9702942108AA3500A3E3BF /* TPChatKit */;
+			targetProxy = EE9702AA2108AA3500A3E3BF /* PBXContainerItemProxy */;
+		};
+		EE9702B62108AA3500A3E3BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EE9702942108AA3500A3E3BF /* TPChatKit */;
+			targetProxy = EE9702B52108AA3500A3E3BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EE97029C2108AA3500A3E3BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE97029D2108AA3500A3E3BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		EE9702A12108AA3500A3E3BF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EE9702A22108AA3500A3E3BF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		EE9702BB2108AA3500A3E3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		EE9702BC2108AA3500A3E3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		EE9702BE2108AA3500A3E3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MP2MY9KM34;
+				INFOPLIST_FILE = "$(SRCROOT)/TPChatKit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.TPChatKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EE9702BF2108AA3500A3E3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = MP2MY9KM34;
+				INFOPLIST_FILE = "$(SRCROOT)/TPChatKit/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.TPChatKit;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EE9702C12108AA3500A3E3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HZE24F8CE;
+				INFOPLIST_FILE = MessagingAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcs.com.MessagingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPChatKit.app/TPChatKit";
+			};
+			name = Debug;
+		};
+		EE9702C22108AA3500A3E3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HZE24F8CE;
+				INFOPLIST_FILE = MessagingAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcs.com.MessagingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TPChatKit.app/TPChatKit";
+			};
+			name = Release;
+		};
+		EE9702C42108AA3500A3E3BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HZE24F8CE;
+				INFOPLIST_FILE = MessagingAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcs.com.MessagingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MessagingApp;
+			};
+			name = Debug;
+		};
+		EE9702C52108AA3500A3E3BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3HZE24F8CE;
+				INFOPLIST_FILE = MessagingAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tcs.com.MessagingAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MessagingApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		EE9702902108AA3500A3E3BF /* Build configuration list for PBXProject "TPChatKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE9702BB2108AA3500A3E3BF /* Debug */,
+				EE9702BC2108AA3500A3E3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE9702BD2108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE9702BE2108AA3500A3E3BF /* Debug */,
+				EE9702BF2108AA3500A3E3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE9702C02108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE9702C12108AA3500A3E3BF /* Debug */,
+				EE9702C22108AA3500A3E3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE9702C32108AA3500A3E3BF /* Build configuration list for PBXNativeTarget "TPChatKitUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE9702C42108AA3500A3E3BF /* Debug */,
+				EE9702C52108AA3500A3E3BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = EE97028D2108AA3500A3E3BF /* Project object */;
+}
