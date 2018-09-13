@@ -18,32 +18,16 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     private lazy var dummyMsgs : [Messageable] = [TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "3", text: "Let's catup for a movie. What do you say? 😇", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "4", text: "Sure! which one?🤫", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "5", text: "Infinity Wars?😎🤩🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "6", text: "or do you have any suggestion?🤨", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "7", text: "Infinity wars sounds good! Will meet you at your place at 4:00pm 👍🏻", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "3", text: "Let's catup for a movie. What do you say? 😇", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "4", text: "Sure! which one?🤫", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "5", text: "Infinity Wars?😎🤩🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "6", text: "or do you have any suggestion?🤨", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "7", text: "Infinity wars sounds good! Will meet you at your place at 4:00pm 👍🏻", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "3", text: "Let's catup for a movie. What do you say? 😇", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "4", text: "Sure! which one?🤫", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "5", text: "Infinity Wars?😎🤩🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "6", text: "or do you have any suggestion?🤨", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "7", text: "Infinity wars sounds good! Will meet you at your place at 4:00pm 👍🏻", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "3", text: "Let's catup for a movie. What do you say? 😇", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "4", text: "Sure! which one?🤫", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "5", text: "Infinity Wars?😎🤩🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "6", text: "or do you have any suggestion?🤨", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "7", text: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming)]
+                                                  TPTextMessage(id: "3", text: "Have you heard of TPChatKit?", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "4", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "5", text: "It's a cool chat kit that you can use in your iOS App to add chat functionality in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "6", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "7", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "8", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "9", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: self.otherParticipants.first!, category: .Outgoing),
+                                                  TPTextMessage(id: "10", text: "Thanks Tarun! Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "11", text: "Glad I could help you!😇", timestamp: nil, sender: self.otherParticipants.first!, category: .Outgoing)
+                                                ]
     
     private lazy var messages : [Messageable] = []
 
