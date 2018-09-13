@@ -26,7 +26,7 @@ class TPTextMessage: TPMessage {
             }
         }
     
-        let msgLabelSize = UILabel.getSizeToFitText(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
+        let msgLabelSize = UITextView.getSizeToFitText(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
     
         //Storing to avoid re-calculation
         self.messageBodySize = msgLabelSize

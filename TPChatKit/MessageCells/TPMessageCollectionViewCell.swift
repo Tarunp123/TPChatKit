@@ -10,7 +10,7 @@ import UIKit
 
 class TPMessageCollectionViewCell: UICollectionViewCell {
     
-    private let msgLabel = UILabel()
+    private let msgTextView = UITextView()
     private let timestampLabel = UILabel()
     private var msgBubble : UIView!
     private let paddingBetweenMsgBubbleAndText = PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT
@@ -20,8 +20,12 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
                 
-        self.msgLabel.numberOfLines = 0
-        self.msgLabel.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
+        self.msgTextView.isSelectable = true
+        self.msgTextView.isScrollEnabled = false
+        self.msgTextView.isEditable = false
+        self.msgTextView.backgroundColor = UIColor.clear
+        self.msgTextView.textContainerInset = UIEdgeInsets.zero
+        self.msgTextView.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
         
         self.timestampLabel.font = UIFont.systemFont(ofSize: TIMESTAMP_FONT_SIZE)
         self.timestampLabel.textAlignment = .right
@@ -35,18 +39,18 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
         createMsgBubble(size: message.getMessageBubbleSize(), ofCategory: message.category)
         
         //MSG TEXT
-        self.msgLabel.text = message.text
-        self.msgLabel.frame = CGRect(x: paddingBetweenMsgBubbleAndText, y: paddingBetweenMsgBubbleAndText, width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
-        self.msgLabel.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
-        self.msgLabel.textColor = message.category.getTextColor()
-        self.msgBubble.addSubview(self.msgLabel)
+        self.msgTextView.text = message.text
+        self.msgTextView.frame = CGRect(x: paddingBetweenMsgBubbleAndText, y: paddingBetweenMsgBubbleAndText, width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
+        self.msgTextView.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
+        self.msgTextView.textColor = message.category.getTextColor()
+        self.msgBubble.addSubview(self.msgTextView)
         
         //TIMESTAMP
         self.timestampLabel.text = String.getTimeStampForMsgBubbleForDate(date: message.timestamp ?? Date())
         self.timestampLabel.font = UIFont.systemFont(ofSize: TIMESTAMP_FONT_SIZE)
         self.timestampLabel.textColor = message.category.getTimestampColor()
         if message.getMessageBodySize().width + message.getTimestampSize().width  + paddingBetweenMsgBubbleAndText + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
-            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgLabel.frame.maxY + 2, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
+            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgTextView.frame.maxY + 2, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
             
             //checking if msg on last line occupies the whole line
             //if not try to move timestamp a bit on the upperside

@@ -50,17 +50,16 @@ extension UILabel{
     
 }
 
-
-extension Date{
+extension UITextView{
     
-//    func getTimeStampForMsgBubble() -> String{
-//        
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "HH:mm"
-//        
-//        
-//    }
-//    
+    static func getSizeToFitText(text: String, font: UIFont, fontPointSize pointSize: CGFloat, maxWidth: CGFloat, maxHeight: CGFloat?) -> CGSize {
+        let textView = UITextView()
+        textView.font = font.withSize(pointSize)
+        textView.textContainerInset = .zero
+        textView.text = text
+        return textView.sizeThatFits(CGSize(width: maxWidth, height: maxHeight ?? CGFloat.greatestFiniteMagnitude))
+    }
+    
 }
 
 
