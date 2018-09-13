@@ -19,7 +19,7 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+                
         self.msgLabel.numberOfLines = 0
         self.msgLabel.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
         
@@ -32,20 +32,21 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
     func createMessageBubbleForMessage(message: TPTextMessage){
         
         //Create Message Bubble
-        createMsgBubble(size: message.bubbleSize ?? message.getMsgBubbleSize(), ofCategory: message.category)
+        createMsgBubble(size: message.getMessageBubbleSize(), ofCategory: message.category)
         
         //MSG TEXT
         self.msgLabel.text = message.text
-        self.msgLabel.frame = CGRect(x: paddingBetweenMsgBubbleAndText, y: paddingBetweenMsgBubbleAndText, width: message.msgBodySize!.width, height: message.msgBodySize!.height)
+        self.msgLabel.frame = CGRect(x: paddingBetweenMsgBubbleAndText, y: paddingBetweenMsgBubbleAndText, width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
         self.msgLabel.font = UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
         self.msgLabel.textColor = message.category.getTextColor()
         self.msgBubble.addSubview(self.msgLabel)
         
         //TIMESTAMP
-        self.timestampLabel.text = String.getTimeStampForMsgBubbleForDate(date: Date())
+        self.timestampLabel.text = String.getTimeStampForMsgBubbleForDate(date: message.timestamp ?? Date())
+        self.timestampLabel.font = UIFont.systemFont(ofSize: TIMESTAMP_FONT_SIZE)
         self.timestampLabel.textColor = message.category.getTimestampColor()
-        if message.msgBodySize!.width + message.timestampSize!.width  + paddingBetweenMsgBubbleAndText + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
-            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.timestampSize!.width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgLabel.frame.maxY + 2, width: message.timestampSize!.width, height: message.timestampSize!.height)
+        if message.getMessageBodySize().width + message.getTimestampSize().width  + paddingBetweenMsgBubbleAndText + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
+            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgLabel.frame.maxY + 2, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
             
             //checking if msg on last line occupies the whole line
             //if not try to move timestamp a bit on the upperside
@@ -58,7 +59,7 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
 //            }
             
         }else{  //horizontal placement
-            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.timestampSize!.width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgBubble.frame.maxY - paddingBetweenMsgBubbleAndText - message.timestampSize!.height, width: message.timestampSize!.width, height: message.timestampSize!.height)
+            self.timestampLabel.frame = CGRect(x: self.msgBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.msgBubble.frame.maxY - paddingBetweenMsgBubbleAndText - message.getTimestampSize().height, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
         }
         
         self.msgBubble.addSubview(timestampLabel)
@@ -74,14 +75,21 @@ class TPMessageCollectionViewCell: UICollectionViewCell {
         msgBubble.backgroundColor = category.getBubbleColor()
         msgBubble.layer.cornerRadius = MESSAGE_BUBBLE_CORNER_RADIUS
         self.contentView.addSubview(self.msgBubble)
-        
+        msgBubble.translatesAutoresizingMaskIntoConstraints = false
+        msgBubble.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: verticalPaddingBetweenMsgBubbleAndCell).isActive = true
+        if(category == .Incoming){
+            msgBubble.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: horizontalPaddingBetweenMsgBubbleAndCell).isActive = true
+        }else{
+            msgBubble.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -horizontalPaddingBetweenMsgBubbleAndCell).isActive = true
+        }
+        msgBubble.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -verticalPaddingBetweenMsgBubbleAndCell).isActive = true
+        msgBubble.widthAnchor.constraint(equalToConstant: size.width).isActive = true
     }
     
     
 
-    static func getCellHeightForMsg(message: TPMessage) -> CGFloat{
-        message.bubbleSize = message.getMsgBubbleSize()
-        return message.bubbleSize!.height + VERTICAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL*2
+    static func getCellHeightForMsg(message: Messageable) -> CGFloat{
+        return message.getMessageBubbleSize().height + VERTICAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL*2
     }
  
    

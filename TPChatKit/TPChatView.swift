@@ -17,6 +17,7 @@ class TPChatView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.backgroundColor = UIColor.white
         self.setupCollectionsView()
     }
     
@@ -27,10 +28,18 @@ class TPChatView: UIView {
         collectionViewLayout.minimumInteritemSpacing = 0
         collectionViewLayout.minimumLineSpacing = 0
         self.messagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height - TOOLBAR_HEIGHT), collectionViewLayout: collectionViewLayout)
+        self.messagesCollectionView?.collectionViewLayout = collectionViewLayout
         self.messagesCollectionView?.backgroundColor = UIColor.white
-        
+        self.messagesCollectionView?.alwaysBounceVertical = true
+        self.messagesCollectionView?.showsVerticalScrollIndicator = true
+        self.messagesCollectionView?.showsHorizontalScrollIndicator = false
         self.messagesCollectionView?.register(TPMessageCollectionViewCell.self, forCellWithReuseIdentifier: MESSGAE_CELL_ID)
         self.addSubview(self.messagesCollectionView!)
+        self.messagesCollectionView?.translatesAutoresizingMaskIntoConstraints = false
+        self.messagesCollectionView?.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.messagesCollectionView?.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.messagesCollectionView?.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -TOOLBAR_HEIGHT).isActive = true
+        self.messagesCollectionView?.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
     }
     
     

@@ -1,0 +1,14 @@
+//
+//  Variables.swift
+//  TPChatKit
+//
+//  Created by Tarun Prajapati on 9/11/18.
+//  Copyright © 2018 Tarun Prajapati. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+var msgBubbleMaxWidth : CGFloat!
+
+var viewSizeTransitionedAt : Date?

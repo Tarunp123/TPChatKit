@@ -18,13 +18,14 @@ class TPChatViewToolbar: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.autoresizingMask = .flexibleHeight
         self.setupBackgroundView()
         self.setupToolbarItems()
     }
     
     private func setupBackgroundView(){
-        self.backgroundView = UIView()
-        self.backgroundView?.backgroundColor = UIColor.groupTableViewBackground//(red: 236/255.0, green: 236/255.0, blue: 236/255.0, alpha: 1.0)
+        self.backgroundView = UIView(frame: self.frame)
+        self.backgroundView?.backgroundColor = UIColor.groupTableViewBackground
         self.addSubview(self.backgroundView!)
         self.backgroundView?.translatesAutoresizingMaskIntoConstraints =  false
         self.backgroundView?.autoresizingMask = .flexibleHeight
@@ -57,7 +58,8 @@ class TPChatViewToolbar: UIView {
         self.textView?.text = INPUT_FIELD_PLACEHOLDER
         self.textView?.textColor = UIColor.lightGray
         self.textView?.textContainer.lineBreakMode = .byWordWrapping
-        self.textView?.font = UIFont.preferredFont(forTextStyle: .body)
+        self.textView?.font = MESSAGE_TEXT_FONT
+        self.textView?.isScrollEnabled = false
         self.backgroundView?.addSubview(self.textView!)
         self.textView?.translatesAutoresizingMaskIntoConstraints = false
         self.textView?.topAnchor.constraint(equalTo: self.topAnchor, constant: 7.5).isActive = true
@@ -67,12 +69,27 @@ class TPChatViewToolbar: UIView {
         
     }
     
+    override var intrinsicContentSize: CGSize {
+        get{
+            let requiredHeight = self.textView!.sizeThatFits(CGSize(width: self.textView!.bounds.width, height: TOOLBAR_MAX_HEIGHT - 15)).height
+            return CGSize(width: self.bounds.width, height: requiredHeight + 15 > TOOLBAR_MAX_HEIGHT ? TOOLBAR_MAX_HEIGHT : requiredHeight + 15)
+        }
+    }
     
-    func updateToolbarHeightBasedOnMessage(message: String){
+    
+    func updateToolbarHeight(){
+        self.invalidateIntrinsicContentSize()
         
+        //enable or disable scroll for text view
+        if(self.frame.height >= TOOLBAR_MAX_HEIGHT){
+            self.textView?.isScrollEnabled = true
+        }else{
+            self.textView?.isScrollEnabled = false
+        }
     }
     
 
+    
     override func didMoveToWindow() {
         super.didMoveToWindow()
         if #available(iOS 11.0, *) {
