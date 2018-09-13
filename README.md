@@ -1,4 +1,36 @@
 # TPChatKit
 Simple, elegant &amp; easy-to-integrate chat interface for your app.
 
-![Alt TPChatKit Demo](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/TPChatKit-Demo.gif)
+![TPChatKit Quick Demo Video](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/TPChatKitDynamicHeightSupport-Demo.gif)
+
+
+
+
+
+## Screenshots
+1. **iPad Slide Over**
+![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SlideOver.PNG)
+
+2. **iPad Split View**
+![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView1.PNG)
+
+3. **iPad Split View**
+![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView2.PNG)
+
+4. **iPad Split View**
+![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView3.PNG)
+
+5. **iPad Landscape**
+![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/iPad_Landscape.PNG)
+
+
+
+
+
+## Features
+1. **Universal Layout**. Supports all iOS devices and orientations.
+2. Currently supports **Text Messages**
+3. Supports **Dynamic Height** for Input Toolbar
+
+
+
