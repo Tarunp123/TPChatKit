@@ -11,6 +11,14 @@ import UIKit
 
 extension UILabel{
     
+    static func heightForSingleLine(font: UIFont, fontPointSize pointSize: CGFloat) -> CGFloat {
+        let label = UILabel()
+        label.font = font.withSize(pointSize)
+        label.numberOfLines = 0
+        label.text = "TPChatKit"
+        return label.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)).height
+    }
+    
     static func getSizeToFitText(text: String, font: UIFont, fontPointSize pointSize: CGFloat, maxWidth: CGFloat, maxHeight: CGFloat?) -> CGSize {
         let label = UILabel()
         label.font = font.withSize(pointSize)

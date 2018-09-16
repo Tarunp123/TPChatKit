@@ -15,14 +15,15 @@ protocol Messageable {
     var timestamp : Date? { get set }
     var sender: TPPerson! { get set }
     
-    var messageBodySize : CGSize? { get set }
-    var timestampSize : CGSize? { get set }
-    var messageBubbleSize : CGSize? { get set }
-    var messageBubbleSizeCalculatedAt : Date? { get set }
+//    var messageBodySize : CGSize? { get set }
+//    var timestampSize : CGSize? { get set }
+//    var messageBubbleSize : CGSize? { get set }
+//    var messageBubbleSizeCalculatedAt : Date? { get set }
     
     var type : MessageType! { get set }
     var category : MessageCategory! { get set }
     
+    func getMessageHeaderSize() -> CGSize
     func getMessageBodySize() -> CGSize
     func getTimestampSize() -> CGSize
     func getMessageBubbleSize() -> CGSize

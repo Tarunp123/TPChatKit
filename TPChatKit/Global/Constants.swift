@@ -14,6 +14,12 @@ let MESSGAE_CELL_ID = "messageCell"
 
 
 //Font
+var MESSAGE_SENDER_FONT : UIFont{
+    get{
+        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+    }
+}
+
 var MESSAGE_TEXT_FONT : UIFont {
     get{
         return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
@@ -27,6 +33,12 @@ var TIMESTAMP_FONT : UIFont {
 }
 
 //Point Size
+var MESSAGE_SENDER_FONT_SIZE : CGFloat{
+    get{
+        return MESSAGE_SENDER_FONT.pointSize
+    }
+}
+
 var MESSAGE_TEXT_FONT_SIZE : CGFloat {
     get{
         return MESSAGE_TEXT_FONT.pointSize
@@ -59,8 +71,8 @@ let MESSAGE_BUBBLE_CORNER_RADIUS : CGFloat = 10.0
 let PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS : CGFloat = 2.0
 let PADDING_BETWEEN_CELLS_FROM_SAME_USER : CGFloat = 5.0
 let PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE : CGFloat = 10.0
-let PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP : CGFloat = 10.0
-
+let HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP : CGFloat = 5.0
+let VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP : CGFloat = 10.0
 
 
 //MARK:- TOOLBAR

@@ -30,12 +30,26 @@ class TPMessage: Messageable, Equatable {
     var category: MessageCategory!
     
     
+    static var shouldShowSender = false
+    
+    
     init(id: String, type: MessageType, timestamp: Date?, sender: TPPerson, category: MessageCategory) {
         self.id = id
         self.type = type
         self.timestamp = timestamp ?? Date()
         self.sender = sender
         self.category = category
+    }
+    
+    
+    func getMessageHeaderSize() -> CGSize {
+        if !TPMessage.shouldShowSender{
+            return .zero
+        }
+        
+        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: CGFloat.greatestFiniteMagnitude, maxHeight: nil)
+        
+        return CGSize(width: requiredSizeForSenderNameLabel.width, height: UILabel.heightForSingleLine(font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE))
     }
     
     func getMessageBodySize() -> CGSize {
@@ -69,19 +83,20 @@ class TPMessage: Messageable, Equatable {
         _ = getMessageBodySize()
         _ = getTimestampSize()
 
-//        print("||getMessageBubbleSize||")
         var msgBubbleWidth : CGFloat = 0
         var msgBubbleHeight : CGFloat  = 0
         
-        if self.messageBodySize!.width + self.timestampSize!.width  + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
+        if self.messageBodySize!.width + self.timestampSize!.width  + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
+            //Vertical Placement
             msgBubbleWidth = (self.messageBodySize!.width > self.timestampSize!.width ? self.messageBodySize!.width : self.timestampSize!.width) + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
-            
-            
-            msgBubbleHeight = (self.messageBodySize!.height + self.timestampSize!.height) + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
-        }else{  //Horizontal Placement
-            msgBubbleWidth = self.messageBodySize!.width + self.timestampSize!.width + PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE
+            msgBubbleHeight = self.messageBodySize!.height + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2) + self.timestampSize!.height 
+
+        }else{
+            //Horizontal Placement
+            msgBubbleWidth = self.messageBodySize!.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE
             msgBubbleHeight = self.messageBodySize!.height + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
         }
+        
         
         //Storing to avoid re-calculation
         self.messageBubbleSize = CGSize(width: msgBubbleWidth, height: msgBubbleHeight)

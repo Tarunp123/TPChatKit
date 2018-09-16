@@ -33,13 +33,13 @@ class TPChatView: UIView {
         self.messagesCollectionView?.alwaysBounceVertical = true
         self.messagesCollectionView?.showsVerticalScrollIndicator = true
         self.messagesCollectionView?.showsHorizontalScrollIndicator = false
-        self.messagesCollectionView?.register(TPMessageCollectionViewCell.self, forCellWithReuseIdentifier: MESSGAE_CELL_ID)
+        self.messagesCollectionView?.register(TPTextMessageCollectionViewCell.self, forCellWithReuseIdentifier: MESSGAE_CELL_ID)
         self.addSubview(self.messagesCollectionView!)
         self.messagesCollectionView?.translatesAutoresizingMaskIntoConstraints = false
-        self.messagesCollectionView?.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.messagesCollectionView?.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.messagesCollectionView?.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -TOOLBAR_HEIGHT).isActive = true
-        self.messagesCollectionView?.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.messagesCollectionView?.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
+        self.messagesCollectionView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
+        self.messagesCollectionView?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -TOOLBAR_HEIGHT).isActive = true
+        self.messagesCollectionView?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
     

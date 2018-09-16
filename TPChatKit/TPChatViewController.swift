@@ -162,12 +162,12 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width , height: TPMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
+        return CGSize(width: collectionView.frame.width , height: TPTextMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
     }
 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : TPMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as! TPMessageCollectionViewCell
+        let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as! TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
         return cell;
     }
@@ -184,9 +184,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         self.toolbar.sendButton?.isEnabled = false
     }
     
-    
-   
-    
+
     
     //MARK:- TextView Delegates
     
@@ -208,6 +206,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         self.toolbar.updateToolbarHeight()
     }
     
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == INPUT_FIELD_PLACEHOLDER{
             textView.text = ""
@@ -215,12 +214,16 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         }
     }
     
+
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text == ""{
             textView.text = INPUT_FIELD_PLACEHOLDER
             textView.textColor = UIColor.lightGray
         }
+        self.toolbar.updateToolbarHeight()
     }
+    
+    
     
     //MARK:- Keyboard events
     @objc func handleKeyboardNotification(notification: NSNotification){

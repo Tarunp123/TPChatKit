@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */; };
+		C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */; };
 		EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1923213D432100B677A9 /* TPChatView.swift */; };
 		EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */; };
 		EE664086212EEA6D008C8B45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE664085212EEA6D008C8B45 /* Extensions.swift */; };
@@ -46,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TPMessageCollectionViewCellable.swift; path = TPChatKit/MessageCells/TPMessageCollectionViewCellable.swift; sourceTree = SOURCE_ROOT; };
 		EE2C1923213D432100B677A9 /* TPChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatView.swift; sourceTree = "<group>"; };
 		EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatViewToolbar.swift; sourceTree = "<group>"; };
 		EE664085212EEA6D008C8B45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */,
+				C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */,
 			);
 			path = MessageCells;
 			sourceTree = "<group>";
@@ -132,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				EEFCF6A021481B62008AF1EE /* Messageable.swift */,
+				C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -339,10 +345,12 @@
 				EE9702C72108BCD300A3E3BF /* TPMessageCollectionViewCell.swift in Sources */,
 				EE66408D212FF3C7008C8B45 /* TPPerson.swift in Sources */,
 				EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */,
+				C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */,
 				EEE50832213FFB3F00A41592 /* TPChatViewToolbarVC.swift in Sources */,
 				EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */,
 				EEFCF69F2147C1EC008AF1EE /* Variables.swift in Sources */,
 				EE66409421330BFD008C8B45 /* Enums.swift in Sources */,
+				C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */,
 				EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */,
 				EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */,
 				EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */,

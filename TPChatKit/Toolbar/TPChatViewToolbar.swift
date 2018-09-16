@@ -29,10 +29,10 @@ class TPChatViewToolbar: UIView {
         self.addSubview(self.backgroundView!)
         self.backgroundView?.translatesAutoresizingMaskIntoConstraints =  false
         self.backgroundView?.autoresizingMask = .flexibleHeight
-        self.backgroundView?.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        self.backgroundView?.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        self.backgroundView?.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        self.backgroundView?.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        self.backgroundView?.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        self.backgroundView?.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+        self.backgroundView?.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        self.backgroundView?.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
     }
     
 
@@ -46,8 +46,8 @@ class TPChatViewToolbar: UIView {
         self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtnFilled"), for: UIControlState.highlighted)
         self.backgroundView?.addSubview(self.sendButton!)
         self.sendButton?.translatesAutoresizingMaskIntoConstraints = false
-        self.sendButton?.trailingAnchor.constraint(equalTo: self.backgroundView!.trailingAnchor, constant: -7.5).isActive = true
-        self.sendButton?.bottomAnchor.constraint(equalTo: self.backgroundView!.bottomAnchor, constant: -12.5).isActive = true
+        self.sendButton?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -7.5).isActive = true
+        self.sendButton?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12.5).isActive = true
         self.sendButton?.widthAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_WIDTH).isActive = true
         self.sendButton?.heightAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_HEIGHT).isActive = true
 
@@ -63,9 +63,9 @@ class TPChatViewToolbar: UIView {
         self.backgroundView?.addSubview(self.textView!)
         self.textView?.translatesAutoresizingMaskIntoConstraints = false
         self.textView?.topAnchor.constraint(equalTo: self.topAnchor, constant: 7.5).isActive = true
-        self.textView?.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 7.5).isActive = true
+        self.textView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 7.5).isActive = true
         self.textView?.trailingAnchor.constraint(equalTo: self.sendButton!.leadingAnchor, constant: -7.5).isActive = true
-        self.textView?.bottomAnchor.constraint(equalTo: self.layoutMarginsGuide.bottomAnchor, constant: -7.5).isActive = true
+        self.textView?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -7.5).isActive = true
         
     }
     
@@ -90,14 +90,14 @@ class TPChatViewToolbar: UIView {
     
 
     
-    override func didMoveToWindow() {
-        super.didMoveToWindow()
-        if #available(iOS 11.0, *) {
-            if let window = self.window {
-                self.bottomAnchor.constraintLessThanOrEqualToSystemSpacingBelow(window.safeAreaLayoutGuide.bottomAnchor, multiplier: 1.0).isActive = true
-            }
-        }
-    }
+//    override func didMoveToWindow() {
+//        super.didMoveToWindow()
+//        if #available(iOS 11.0, *) {
+//            if let window = self.window {
+//                self.bottomAnchor.constraintLessThanOrEqualToSystemSpacingBelow(window.safeAreaLayoutGuide.bottomAnchor, multiplier: 1.0).isActive = true
+//            }
+//        }
+//    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
