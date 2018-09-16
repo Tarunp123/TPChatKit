@@ -9,13 +9,13 @@
 import Foundation
 import UIKit
 
-enum MessageType {
+enum TPMessageType {
     case Text
 }
 
 
 
-enum MessageCategory {
+enum TPMessageCategory {
     case Incoming
     case Outgoing
     
@@ -46,4 +46,11 @@ enum MessageCategory {
         }
     }
     
+}
+
+
+
+enum TPChatType {
+    case Single
+    case Group
 }

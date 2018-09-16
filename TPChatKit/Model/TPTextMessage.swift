@@ -13,10 +13,11 @@ class TPTextMessage: TPMessage {
     
     var text : String!
 
-    init(id: String, text: String, timestamp: Date?, sender: TPPerson, category: MessageCategory) {
+    init(id: String, text: String, timestamp: Date?, sender: TPPerson, category: TPMessageCategory) {
         super.init(id: id, type: .Text, timestamp: timestamp, sender: sender, category: category)
         self.text = text
     }
+    
     
    override func getMessageBodySize() -> CGSize {
     

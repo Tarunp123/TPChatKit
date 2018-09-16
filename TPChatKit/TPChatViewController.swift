@@ -14,9 +14,10 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
 
     //Initializing with dummy data
     private var me : TPPerson! = TPPerson(id: "1", name: "Tarun Prajapati")
-    private var otherParticipants : [TPPerson] = [TPPerson(id: "2", name: "John Smith")]
+    private var otherParticipants : [TPPerson] = [TPPerson(id: "3", name: "John Smith", senderNameFontColor: .orange), TPPerson(id: "2", name: "Carl Jhonson", senderNameFontColor: UIColor(red: 0, green: 174/255.0, blue: 255.0, alpha: 1.0))]
     
-    private lazy var dummyMsgs : [Messageable] = [TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
+    
+    private lazy var dummyMsgs : [TPMessage] = [TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "3", text: "Have you heard of TPChatKit?", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "4", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
@@ -24,13 +25,18 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   TPTextMessage(id: "6", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "7", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "8", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "9", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: self.otherParticipants.first!, category: .Outgoing),
+                                                  TPTextMessage(id: "9", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "10", text: "Thanks Tarun! Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "11", text: "Glad I could help you!😇", timestamp: nil, sender: self.otherParticipants.first!, category: .Outgoing)
+                                                  TPTextMessage(id: "11", text: "Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "12", text: "Hey Tarun! Is this your framework?", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "13", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "14", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "15", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
+                                                  
+                                                  
                                                 ]
     
     private lazy var messages : [Messageable] = []
-
     
     //View
     private var chatView : TPChatView?
@@ -44,6 +50,20 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }()
     
     
+    //MARK: Initializers
+    
+    init(chatType: TPChatType) {
+        super.init(nibName: nil, bundle: nil)
+        
+        currentChatType = chatType
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    //MARK: View LifeCycle Events
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,11 +79,10 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         msgBubbleMaxWidth = self.chatView!.messagesCollectionView!.frame.width * 0.80
         
 
-//            for _ in 0..<100{
-                for index in 0..<self.dummyMsgs.count{
-                    self.messages.append(self.dummyMsgs[index])
-                }
-//            }
+        //Loading Dummy Messages
+        for index in 0..<self.dummyMsgs.count{
+            self.addNewMessage(message: self.dummyMsgs[index])
+        }
         
         //Storing current font point size to automatically reload all the message bubbles
         //when user changes the font point size while app is running.
@@ -71,6 +90,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         
     }
 
+    
 
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         msgBubbleMaxWidth = size.width * 0.80
@@ -173,18 +193,37 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     
-    //MARK:- Send Button Targets
-    @IBAction func didClickSendButton(sender: UIButton){
-        let newMessage = TPTextMessage(id: "\(self.messages.count)", text: self.toolbar.textView!.text!.trimmingCharacters(in: .whitespacesAndNewlines), timestamp: Date(), sender: me, category: .Outgoing)
+    
+    //MARK:- Add New Messages
+    
+    func addNewMessage(message: Messageable) {
+        var newMessage = message
+        
+        //Updating isPreviousMessageFromThisSender for new Message
+        if var lastMessage = self.messages.last{
+            if lastMessage.sender == message.sender{
+                newMessage.isPreviousMessageFromThisSender =  true
+            }else{
+                newMessage.isPreviousMessageFromThisSender =  false
+            }
+        }
+        
         self.messages.append(newMessage)
         self.chatView?.messagesCollectionView?.reloadData()
         self.chatView?.messagesCollectionView?.scrollToBottom()
+    }
+    
+    
+    //MARK:- Send Button Targets
+    @IBAction func didClickSendButton(sender: UIButton){
+        let newMessage = TPTextMessage(id: "\(self.messages.count)", text: self.toolbar.textView!.text!.trimmingCharacters(in: .whitespacesAndNewlines), timestamp: Date(), sender: me, category: .Outgoing)
+        self.addNewMessage(message: newMessage)
         self.toolbar.textView?.text = ""
         self.toolbar.updateToolbarHeight()
         self.toolbar.sendButton?.isEnabled = false
+        
     }
     
-
     
     //MARK:- TextView Delegates
     
@@ -237,12 +276,15 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
 
             let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
-            self.chatView?.messagesCollectionView?.contentInset = .init(top: 0, left: 0, bottom: keyboardViewEndFrame.height - TOOLBAR_HEIGHT, right: 0)
+            self.chatView?.messagesCollectionView?.contentInset = .init(top: 0, left: 0, bottom: keyboardViewEndFrame.height - TOOLBAR_HEIGHT + PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS, right: 0)
             self.chatView?.messagesCollectionView?.scrollIndicatorInsets = self.chatView!.messagesCollectionView!.contentInset
             self.chatView?.messagesCollectionView?.scrollToBottom()
         }
     
     }
+    
+    
+    
     
 }
 

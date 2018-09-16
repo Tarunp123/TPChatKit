@@ -20,8 +20,10 @@ protocol Messageable {
 //    var messageBubbleSize : CGSize? { get set }
 //    var messageBubbleSizeCalculatedAt : Date? { get set }
     
-    var type : MessageType! { get set }
-    var category : MessageCategory! { get set }
+    var type : TPMessageType! { get set }
+    var category : TPMessageCategory! { get set }
+    
+    var isPreviousMessageFromThisSender : Bool? { get set }
     
     func getMessageHeaderSize() -> CGSize
     func getMessageBodySize() -> CGSize

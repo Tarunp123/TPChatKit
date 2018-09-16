@@ -21,19 +21,20 @@ class TPMessage: Messageable, Equatable {
     
     var timestampSize: CGSize?
     
+    var messageHeaderSize : CGSize?
+    
     var messageBubbleSize: CGSize?
     
     var messageBubbleSizeCalculatedAt: Date?
     
-    var type: MessageType!
+    var type: TPMessageType!
     
-    var category: MessageCategory!
+    var category: TPMessageCategory!
+    
+    var isPreviousMessageFromThisSender : Bool?
     
     
-    static var shouldShowSender = false
-    
-    
-    init(id: String, type: MessageType, timestamp: Date?, sender: TPPerson, category: MessageCategory) {
+    init(id: String, type: TPMessageType, timestamp: Date?, sender: TPPerson, category: TPMessageCategory) {
         self.id = id
         self.type = type
         self.timestamp = timestamp ?? Date()
@@ -43,13 +44,32 @@ class TPMessage: Messageable, Equatable {
     
     
     func getMessageHeaderSize() -> CGSize {
-        if !TPMessage.shouldShowSender{
+        //Don't show header view for Outgoing messages and Any Message in Single Chat.
+        //i.e show header view only for Incoming messages in Group Chat
+        if currentChatType == .Single || category == .Outgoing{
             return .zero
         }
         
-        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: CGFloat.greatestFiniteMagnitude, maxHeight: nil)
+        if let isPreviousMessageFromThisSender = self.isPreviousMessageFromThisSender{
+            if isPreviousMessageFromThisSender {
+                return .zero
+            }
+        }
         
-        return CGSize(width: requiredSizeForSenderNameLabel.width, height: UILabel.heightForSingleLine(font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE))
+        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let headerSize = self.messageHeaderSize{
+            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                return headerSize
+            }
+        }
+        
+        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: msgBubbleMaxWidth - PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2, maxHeight: nil)
+        
+        self.messageHeaderSize = CGSize(width: requiredSizeForSenderNameLabel.width, height: UILabel.heightForSingleLine(font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE))
+        
+        //adding padding
+        self.messageHeaderSize?.height += PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT
+        
+        return self.messageHeaderSize!
     }
     
     func getMessageBodySize() -> CGSize {
@@ -64,7 +84,7 @@ class TPMessage: Messageable, Equatable {
             }
         }
         
-        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
+        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: msgBubbleMaxWidth - PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2, maxHeight: nil)
         
         //Storing to avoid re-calculation
         self.timestampSize = timestampLabelSize
@@ -82,7 +102,7 @@ class TPMessage: Messageable, Equatable {
         
         _ = getMessageBodySize()
         _ = getTimestampSize()
-
+        
         var msgBubbleWidth : CGFloat = 0
         var msgBubbleHeight : CGFloat  = 0
         
@@ -97,9 +117,21 @@ class TPMessage: Messageable, Equatable {
             msgBubbleHeight = self.messageBodySize!.height + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
         }
         
+        //Adding Message Header View Height to Message Body View Height ONLY for Incoming messages in Group Chat
+        if currentChatType == .Group && category == .Incoming{
+            msgBubbleHeight += self.getMessageHeaderSize().height
+            
+            //Checking if message bubble width is less than header view width
+            if msgBubbleWidth < self.getMessageHeaderSize().width + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2){
+                msgBubbleWidth = self.getMessageHeaderSize().width + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2)
+            }
+        }
+        
         
         //Storing to avoid re-calculation
         self.messageBubbleSize = CGSize(width: msgBubbleWidth, height: msgBubbleHeight)
+        
+        
         
         //Update timestamp when message bubble size was calculated
         self.messageBubbleSizeCalculatedAt = Date()

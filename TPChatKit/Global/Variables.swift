@@ -12,3 +12,5 @@ import UIKit
 var msgBubbleMaxWidth : CGFloat!
 
 var viewSizeTransitionedAt : Date?
+
+var currentChatType : TPChatType!

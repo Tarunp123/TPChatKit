@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let navController = UINavigationController(rootViewController: TPChatViewController())
+        let navController = UINavigationController(rootViewController: TPChatViewController(chatType: .Group))
         navController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navController
         window?.makeKeyAndVisible()

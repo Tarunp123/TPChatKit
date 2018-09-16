@@ -7,15 +7,18 @@
 //
 
 import Foundation
+import UIKit
 
 class TPPerson: Equatable {
     
-    private var id : String!
-    var name : String! 
+    private var id : String
+    var name : String
+    var fontColor : UIColor
     
-    init(id: String, name: String) {
+    init(id: String, name: String, senderNameFontColor fontColor: UIColor = .black) {
         self.id = id
         self.name = name
+        self.fontColor = fontColor
     }
 
     static func == (lhs: TPPerson, rhs: TPPerson) -> Bool {
