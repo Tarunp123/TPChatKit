@@ -7,12 +7,9 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 
 ## Screenshots
 **1. Single Chat & Group Chat**
-<br />
-<img alt="Single Chat" align="left" width="320" height="568"  src="https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png">
 
-<img alt="Group Chat" align="right" width="320" height="568" src="https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png">
+![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png = 320x568) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png = 320x568) &nbsp;&nbsp;
 
-<br />
 
 
 **2. iPad Split View**
