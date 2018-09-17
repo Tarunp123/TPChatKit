@@ -8,19 +8,25 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 
 
 ## Screenshots
-1. **iPad Slide Over**
+**1. Single Chat**
+![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png)
+
+**2. Group Chat**
+![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png)
+
+**3. iPad Slide Over**
 ![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SlideOver.PNG)
 
-2. **iPad Split View**
+**4. iPad Split View**
 ![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView1.PNG)
 
-3. **iPad Split View**
+**5. iPad Split View**
 ![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView2.PNG)
 
-4. **iPad Split View**
+**6. iPad Split View**
 ![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView3.PNG)
 
-5. **iPad Landscape**
+**7. iPad Landscape**
 ![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/iPad_Landscape.PNG)
 
 

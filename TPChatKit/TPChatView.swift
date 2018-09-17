@@ -29,7 +29,7 @@ class TPChatView: UIView {
         collectionViewLayout.minimumLineSpacing = 0
         self.messagesCollectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height - TOOLBAR_HEIGHT), collectionViewLayout: collectionViewLayout)
         self.messagesCollectionView?.collectionViewLayout = collectionViewLayout
-        self.messagesCollectionView?.backgroundColor = UIColor.groupTableViewBackground
+        self.messagesCollectionView?.backgroundColor = UIColor(red: 227/255.0, green: 216/255.0, blue: 218/255.0, alpha: 1.0)
         self.messagesCollectionView?.alwaysBounceVertical = true
         self.messagesCollectionView?.showsVerticalScrollIndicator = true
         self.messagesCollectionView?.showsHorizontalScrollIndicator = false

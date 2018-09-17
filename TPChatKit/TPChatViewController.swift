@@ -14,24 +14,25 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
 
     //Initializing with dummy data
     private var me : TPPerson! = TPPerson(id: "1", name: "Tarun Prajapati")
-    private var otherParticipants : [TPPerson] = [TPPerson(id: "3", name: "John Smith", senderNameFontColor: .orange), TPPerson(id: "2", name: "Carl Jhonson", senderNameFontColor: UIColor(red: 0, green: 174/255.0, blue: 255.0, alpha: 1.0))]
+    private var otherParticipants : [TPPerson] = [TPPerson(id: "3", name: "John Smith", senderNameFontColor: .orange), TPPerson(id: "2", name: "Carl Jhonson", senderNameFontColor: UIColor(red: 0, green: 173/255.0, blue: 197/255.0, alpha: 1.0))]
     
     
-    private lazy var dummyMsgs : [TPMessage] = [TPTextMessage(id: "1", text: "Hi John", timestamp: nil, sender: me, category: .Outgoing),
+    private lazy var dummyMsgs : [TPMessage] = [TPTextMessage(id: "1", text: "Hi John and Carl", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "3", text: "Have you heard of TPChatKit?", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "4", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "5", text: "It's a cool chat kit that you can use in your iOS App to add chat functionality in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "6", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "7", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "8", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "9", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "10", text: "Thanks Tarun! Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "11", text: "Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "12", text: "Hey Tarun! Is this your framework?", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
-                                                  TPTextMessage(id: "13", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
-                                                  TPTextMessage(id: "14", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "15", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "4", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "5", text: "Sounds like a UI Kit🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "6", text: "It's a cool chat kit that you can use in your iOS App to add chat functionality in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "7", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "8", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "9", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "10", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "11", text: "Thanks Tarun! Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "12", text: "Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  TPTextMessage(id: "13", text: "Hey Tarun! Is this your framework?", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "14", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "15", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "16", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
                                                   
                                                   
                                                 ]
@@ -220,8 +221,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         self.addNewMessage(message: newMessage)
         self.toolbar.textView?.text = ""
         self.toolbar.updateToolbarHeight()
-        self.toolbar.sendButton?.isEnabled = false
-        
+        self.toolbar.sendButton?.isEnabled = false        
     }
     
     
