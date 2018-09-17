@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 //Cell Id
-let MESSGAE_CELL_ID = "messageCell"
+let MESSGAE_CELL_ID = "TPMessageCell"
 
 
 //Font

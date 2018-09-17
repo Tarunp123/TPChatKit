@@ -17,7 +17,7 @@ class TPChatView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor.white
+        self.backgroundColor = UIColor(red: 227/255.0, green: 216/255.0, blue: 218/255.0, alpha: 1.0)
         self.setupCollectionsView()
     }
     
@@ -38,7 +38,7 @@ class TPChatView: UIView {
         self.messagesCollectionView?.translatesAutoresizingMaskIntoConstraints = false
         self.messagesCollectionView?.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor).isActive = true
         self.messagesCollectionView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor).isActive = true
-        self.messagesCollectionView?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -TOOLBAR_HEIGHT).isActive = true
+        self.messagesCollectionView?.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -TOOLBAR_HEIGHT).isActive = true
         self.messagesCollectionView?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     

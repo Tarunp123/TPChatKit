@@ -50,6 +50,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
             self.senderNameLabel = UILabel()
             self.senderNameLabel?.text = message.sender.name
             self.senderNameLabel?.font = MESSAGE_SENDER_FONT
+            self.senderNameLabel?.font = self.senderNameLabel?.font.withSize(MESSAGE_SENDER_FONT_SIZE)
             self.senderNameLabel?.textAlignment = .left
             self.senderNameLabel?.lineBreakMode = .byTruncatingTail
             self.senderNameLabel?.textColor = message.sender.fontColor
@@ -65,13 +66,15 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         //MSG TEXT
         self.messageTextView.text = message.text
         self.messageTextView.frame = CGRect(x: PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT, y: message.getMessageHeaderSize().height + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT, width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
-        self.messageTextView.font =  UIFont.systemFont(ofSize: MESSAGE_TEXT_FONT_SIZE)
+        self.messageTextView.font =  MESSAGE_TEXT_FONT
+        self.messageTextView.font = self.messageTextView.font?.withSize(MESSAGE_TEXT_FONT_SIZE)
         self.messageTextView.textColor = message.category.getTextColor()
         self.messageBubble.addSubview(self.messageTextView)
         
         //TIMESTAMP
         self.timestampLabel.text = String.getTimeStampForMsgBubbleForDate(date: message.timestamp ?? Date())
         self.timestampLabel.font = TIMESTAMP_FONT
+        self.timestampLabel.font = self.timestampLabel.font.withSize(TIMESTAMP_FONT_SIZE)
         self.timestampLabel.textColor = message.category.getTimestampColor()
         self.timestampLabel.frame = CGRect(x: self.messageBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.messageBubble.frame.maxY - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE - message.getTimestampSize().height, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
         self.messageBubble.addSubview(self.timestampLabel)
