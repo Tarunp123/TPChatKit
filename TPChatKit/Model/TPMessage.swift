@@ -62,12 +62,12 @@ class TPMessage: Messageable, Equatable {
             }
         }
         
-        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: msgBubbleMaxWidth - PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2, maxHeight: nil)
+        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: msgBubbleMaxWidth - (self.category == .Incoming ? (INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left + INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right) : (OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.left + OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right)), maxHeight: nil)
         
         self.messageHeaderSize = CGSize(width: requiredSizeForSenderNameLabel.width, height: UILabel.heightForSingleLine(font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE))
         
         //adding padding
-        self.messageHeaderSize?.height += PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT
+        self.messageHeaderSize?.height += self.category == .Incoming ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.top : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.top
         
         return self.messageHeaderSize!
     }
@@ -84,7 +84,7 @@ class TPMessage: Messageable, Equatable {
             }
         }
         
-        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: msgBubbleMaxWidth - PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2, maxHeight: nil)
+        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
         
         //Storing to avoid re-calculation
         self.timestampSize = timestampLabelSize
@@ -106,15 +106,18 @@ class TPMessage: Messageable, Equatable {
         var msgBubbleWidth : CGFloat = 0
         var msgBubbleHeight : CGFloat  = 0
         
-        if self.messageBodySize!.width + self.timestampSize!.width  + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
+        let horizontalContentPadding = self.category == .Incoming ? (INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left + INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right) : (OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.left + OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right)
+        let verticalContentPadding = self.category == .Incoming ? (INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.top + INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.bottom) : (OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.top + OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.bottom)
+        
+        if self.messageBodySize!.width + self.timestampSize!.width  + horizontalContentPadding + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
             //Vertical Placement
-            msgBubbleWidth = (self.messageBodySize!.width > self.timestampSize!.width ? self.messageBodySize!.width : self.timestampSize!.width) + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
-            msgBubbleHeight = self.messageBodySize!.height + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2) + self.timestampSize!.height 
+            msgBubbleWidth = (self.messageBodySize!.width > self.timestampSize!.width ? self.messageBodySize!.width : self.timestampSize!.width) + horizontalContentPadding
+            msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + self.timestampSize!.height
 
         }else{
             //Horizontal Placement
-            msgBubbleWidth = self.messageBodySize!.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2 + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE
-            msgBubbleHeight = self.messageBodySize!.height + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT * 2)
+            msgBubbleWidth = self.messageBodySize!.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + horizontalContentPadding + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE
+            msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding
         }
         
         //Adding Message Header View Height to Message Body View Height ONLY for Incoming messages in Group Chat
@@ -122,8 +125,8 @@ class TPMessage: Messageable, Equatable {
             msgBubbleHeight += self.getMessageHeaderSize().height
             
             //Checking if message bubble width is less than header view width
-            if msgBubbleWidth < self.getMessageHeaderSize().width + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2){
-                msgBubbleWidth = self.getMessageHeaderSize().width + (PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT*2)
+            if msgBubbleWidth < self.getMessageHeaderSize().width + horizontalContentPadding{
+                msgBubbleWidth = self.getMessageHeaderSize().width + horizontalContentPadding
             }
         }
         

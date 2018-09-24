@@ -10,7 +10,7 @@ import UIKit
 
 class TPTextMessageCollectionViewCell: UICollectionViewCell {
     
-    private var messageBubble : UIView!
+    private var messageBubble : UIImageView!
     private let messageTextView = UITextView()
     private let timestampLabel = UILabel()
     private var messageHeaderView : UIView?
@@ -56,16 +56,16 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
             self.senderNameLabel?.textColor = message.sender.fontColor
             self.messageHeaderView?.addSubview(self.senderNameLabel!)
             self.senderNameLabel?.translatesAutoresizingMaskIntoConstraints = false
-            self.senderNameLabel?.topAnchor.constraint(equalTo: self.messageHeaderView!.topAnchor, constant: PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT).isActive = true
-            self.senderNameLabel?.leadingAnchor.constraint(equalTo: self.messageHeaderView!.leadingAnchor, constant: PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT).isActive = true
-            self.senderNameLabel?.trailingAnchor.constraint(equalTo: self.messageHeaderView!.trailingAnchor, constant: -PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT).isActive = true
+            self.senderNameLabel?.topAnchor.constraint(equalTo: self.messageHeaderView!.topAnchor, constant: (message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.top : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.top).isActive = true
+            self.senderNameLabel?.leadingAnchor.constraint(equalTo: self.messageHeaderView!.leadingAnchor, constant: (message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.left).isActive = true
+            self.senderNameLabel?.trailingAnchor.constraint(equalTo: self.messageHeaderView!.trailingAnchor, constant: -1 * ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right)).isActive = true
             self.senderNameLabel?.bottomAnchor.constraint(equalTo: self.messageHeaderView!.bottomAnchor).isActive = true
 
         }
         
         //MSG TEXT
         self.messageTextView.text = message.text
-        self.messageTextView.frame = CGRect(x: PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT, y: message.getMessageHeaderSize().height + PADDING_BETWEEN_MESSAGE_BUBBLE_AND_TEXT, width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
+        self.messageTextView.frame = CGRect(x: ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.left), y: message.getMessageHeaderSize().height + ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.top : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.top), width: message.getMessageBodySize().width, height: message.getMessageBodySize().height)
         self.messageTextView.font =  MESSAGE_TEXT_FONT
         self.messageTextView.font = self.messageTextView.font?.withSize(MESSAGE_TEXT_FONT_SIZE)
         self.messageTextView.textColor = message.category.getTextColor()
@@ -76,7 +76,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         self.timestampLabel.font = TIMESTAMP_FONT
         self.timestampLabel.font = self.timestampLabel.font.withSize(TIMESTAMP_FONT_SIZE)
         self.timestampLabel.textColor = message.category.getTimestampColor()
-        self.timestampLabel.frame = CGRect(x: self.messageBubble.frame.width - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.messageBubble.frame.maxY - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE - message.getTimestampSize().height, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
+        self.timestampLabel.frame = CGRect(x: self.messageBubble.frame.width - ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right) - message.getTimestampSize().width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE, y: self.messageBubble.frame.maxY - ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.bottom : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.bottom) - message.getTimestampSize().height, width: message.getTimestampSize().width, height: message.getTimestampSize().height)
         self.messageBubble.addSubview(self.timestampLabel)
     }
     
@@ -86,22 +86,36 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         self.messageBubble?.removeFromSuperview()
         
         let bubbleSize = message.getMessageBubbleSize()
-        self.messageBubble = UIView(frame:  CGRect(x: (message.category == .Incoming ? HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : self.contentView.frame.width - HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL - bubbleSize.width), y: 0, width: bubbleSize.width, height: bubbleSize.height))
+        self.messageBubble = UIImageView(frame:  CGRect(x: (message.category == .Incoming ? HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : self.contentView.frame.width - HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL - bubbleSize.width), y: 0, width: bubbleSize.width, height: bubbleSize.height))
 //        self.messageBubble.clipsToBounds = true
-        self.messageBubble.backgroundColor = message.category.getBubbleColor()
+        self.messageBubble.tintColor = message.category.getBubbleColor()
         self.messageBubble.layer.cornerRadius = MESSAGE_BUBBLE_CORNER_RADIUS
         self.contentView.addSubview(self.messageBubble)
         self.messageBubble.translatesAutoresizingMaskIntoConstraints = false
-        if let isPreviousMessageFromThisSender = message.isPreviousMessageFromThisSender{
-            self.messageBubble.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: (isPreviousMessageFromThisSender ? PADDING_BETWEEN_CELLS_FROM_SAME_USER : PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS)).isActive = true
+        
+        var bubbleImageName = ""
+        if message.isPreviousMessageFromThisSender != nil && message.isPreviousMessageFromThisSender!{   //trailing Bubble
+            self.messageBubble.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: PADDING_BETWEEN_CELLS_FROM_SAME_USER).isActive = true
+            bubbleImageName = (message.category == .Incoming) ? INCOMING_TRAILING_BUBBLE_NAME : OUTGOING_TRAILING_BUBBLE_NAME
         }else{
+            //Leading or First Bubble
             self.messageBubble.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS).isActive = true
+            bubbleImageName = (message.category == .Incoming) ? INCOMING_LEADING_BUBBLE_NAME : OUTGOING_LEADING_BUBBLE_NAME
         }
-        if(message.category == .Incoming){
+        
+        if(message.category == .Incoming){  //Incoming Message
             self.messageBubble.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL).isActive = true
         }else{
+            //Outgoing Message
             self.messageBubble.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL).isActive = true
         }
+        
+        
+        //Set Bubble Image
+        let bubbleImg = UIImage(named: bubbleImageName)?.resizableImage(withCapInsets: MESSAGE_BUBBLE_CAP_INSETS, resizingMode: .stretch).withRenderingMode(.alwaysTemplate)
+        self.messageBubble.image = bubbleImg
+
+        
         self.messageBubble.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0).isActive = true
         self.messageBubble.widthAnchor.constraint(equalToConstant: bubbleSize.width).isActive = true
     }
