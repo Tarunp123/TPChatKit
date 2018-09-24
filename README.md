@@ -32,8 +32,9 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 1. **Universal Layout**. Supports all iOS devices and orientations.
 2. Currently supports **Text Messages**
 3. Supports **Single and Group Chat**
-4. **Message Grouping** 
-5. Supports **Dynamic Height** for Input Toolbar
+4. Supports **Custom Message Bubble Template Image**
+5. **Message Grouping** 
+6. Supports **Dynamic Height** for Input Toolbar
 
 
 
