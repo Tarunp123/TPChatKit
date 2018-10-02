@@ -75,6 +75,7 @@ let VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP : CGFloat = 5.0
 let MESSAGE_BUBBLE_CAP_INSETS = UIEdgeInsets(top: 17, left: 20, bottom: 17, right: 20)
 let INCOMING_MESSAGE_BUBBLE_CONTENT_INSET = UIEdgeInsets(top: 5, left: 15, bottom: 5, right: 5)
 let OUTGING_MESSAGE_BUBBLE_CONTENT_INSET = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 15)
+let MESSAGE_BUBBLE_LONG_PRESS_DURATION : CFTimeInterval = 0.5
 
 //Bubble Image Name
 let OUTGOING_LEADING_BUBBLE_NAME = "Outgoing_Leading_Bubble_Style1"

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C333F0812163BB0D004DFBA8 /* TPMessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */; };
 		C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */; };
 		C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */; };
+		C3BDFCA72162A78C008FDF00 /* TPLongPressGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BDFCA62162A78C008FDF00 /* TPLongPressGestureRecognizer.swift */; };
 		EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1923213D432100B677A9 /* TPChatView.swift */; };
 		EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */; };
 		EE664086212EEA6D008C8B45 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE664085212EEA6D008C8B45 /* Extensions.swift */; };
@@ -48,8 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPMessageBubbleView.swift; sourceTree = "<group>"; };
 		C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TPMessageCollectionViewCellable.swift; path = TPChatKit/MessageCells/TPMessageCollectionViewCellable.swift; sourceTree = SOURCE_ROOT; };
+		C3BDFCA62162A78C008FDF00 /* TPLongPressGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLongPressGestureRecognizer.swift; sourceTree = "<group>"; };
 		EE2C1923213D432100B677A9 /* TPChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatView.swift; sourceTree = "<group>"; };
 		EE2C1925213D458700B677A9 /* TPChatViewToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatViewToolbar.swift; sourceTree = "<group>"; };
 		EE664085212EEA6D008C8B45 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -129,6 +133,7 @@
 			children = (
 				EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */,
 				C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */,
+				C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */,
 			);
 			path = MessageCells;
 			sourceTree = "<group>";
@@ -169,6 +174,7 @@
 				EE8774A921352D5500AC91D0 /* MessageCells */,
 				EE6640902132D372008C8B45 /* Global */,
 				EE97029A2108AA3500A3E3BF /* TPChatViewController.swift */,
+				C3BDFCA62162A78C008FDF00 /* TPLongPressGestureRecognizer.swift */,
 				EE2C1923213D432100B677A9 /* TPChatView.swift */,
 				EEE50833213FFB4700A41592 /* Toolbar */,
 				EE8774AA21352D7600AC91D0 /* Protocols */,
@@ -351,7 +357,9 @@
 				EEFCF69F2147C1EC008AF1EE /* Variables.swift in Sources */,
 				EE66409421330BFD008C8B45 /* Enums.swift in Sources */,
 				C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */,
+				C333F0812163BB0D004DFBA8 /* TPMessageBubbleView.swift in Sources */,
 				EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */,
+				C3BDFCA72162A78C008FDF00 /* TPLongPressGestureRecognizer.swift in Sources */,
 				EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */,
 				EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */,
 				EE9702992108AA3500A3E3BF /* AppDelegate.swift in Sources */,

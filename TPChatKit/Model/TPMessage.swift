@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TPMessage: Messageable, Equatable {
+class TPMessage: NSObject, Messageable {
     
     var id: String!
     

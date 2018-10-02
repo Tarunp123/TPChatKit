@@ -39,7 +39,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   
                                                 ]
     
-    private lazy var messages : [Messageable] = []
+    private lazy var messages : [TPMessage] = []
     
     //View
     private var chatView : TPChatView?
@@ -115,7 +115,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         //Configure Nav bar
-        self.title = otherParticipants.first!.name
+        self.title = "Homies"
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationItem.largeTitleDisplayMode = .never
         
@@ -185,25 +185,86 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width , height: TPTextMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
+        return CGSize(width: collectionView.frame.width, height: TPTextMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
     }
 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as! TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
+        let longPressGR = TPLongPressGestureRecognizer(target: self, action: #selector(didLongPressMessage(gestureRecognizer: )))
+        longPressGR.message = messages[indexPath.row]
+        longPressGR.minimumPressDuration = MESSAGE_BUBBLE_LONG_PRESS_DURATION
+        cell.messageBubble.addGestureRecognizer(longPressGR)
         return cell;
     }
     
     
+    //MARK:- CollectionView Delegate methods
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.longPressedMessageBubble = nil
+        self.longPressedMessage = nil
+    }
+    
+    //MARK:- Message Long Press Events
+    private var longPressedMessageBubble : TPMessageBubbleView?
+    private var longPressedMessage : TPMessage?
+    
+    @objc
+    func didLongPressMessage(gestureRecognizer: TPLongPressGestureRecognizer) {
+        if gestureRecognizer.state == .ended{
+            if let message = gestureRecognizer.message{
+                longPressedMessage = message
+                if let menu = menuForMessage(message: message), let bubbleView = gestureRecognizer.view as? TPMessageBubbleView {
+                    longPressedMessageBubble = bubbleView
+                    _ = bubbleView.becomeFirstResponder()
+                    menu.setMenuVisible(true, animated: true)
+                    menu.setTargetRect(bubbleView.bounds, in: bubbleView)
+                }
+                
+            }
+        }
+    }
+    
+    
+    //MARK:- Menu for Message
+    private func menuForMessage(message: TPMessage) -> UIMenuController? {
+        if let messageType = message.type{
+            var menuItems = [UIMenuItem]()
+            switch messageType {
+            case .Text:
+                let copyMenuItem = UIMenuItem(title: "Copy", action: #selector(didTapCopyMenuItem(menuItem:)))
+                menuItems.append(copyMenuItem)
+            }
+        
+            let menuController = UIMenuController.shared
+            menuController.menuItems = menuItems
+            return menuController
+        }
+        return nil
+    }
+
+    
+    //MARK:- Message MenuItem Selectors
+    @objc func didTapCopyMenuItem(menuItem: UIMenuItem){
+        if let message = longPressedMessage{
+            if let messageType = message.type{
+                switch messageType {
+                case .Text:
+                    UIPasteboard.general.string = (message as! TPTextMessage).text
+                }
+            }
+        }
+    }
+        
+        
     
     //MARK:- Add New Messages
-    
-    func addNewMessage(message: Messageable) {
-        var newMessage = message
+    func addNewMessage(message: TPMessage) {
+        let newMessage = message
         
         //Updating isPreviousMessageFromThisSender for new Message
-        if var lastMessage = self.messages.last{
+        if let lastMessage = self.messages.last{
             if lastMessage.sender == message.sender{
                 newMessage.isPreviousMessageFromThisSender =  true
             }else{
@@ -228,7 +289,6 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     
     //MARK:- TextView Delegates
-    
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         
         let currentText = textView.text ?? ""

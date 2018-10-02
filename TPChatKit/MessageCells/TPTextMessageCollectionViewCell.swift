@@ -10,7 +10,7 @@ import UIKit
 
 class TPTextMessageCollectionViewCell: UICollectionViewCell {
     
-    private var messageBubble : UIImageView!
+    var messageBubble : TPMessageBubbleView!
     private let messageTextView = UITextView()
     private let timestampLabel = UILabel()
     private var messageHeaderView : UIView?
@@ -19,7 +19,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.messageTextView.isSelectable = true
+        self.messageTextView.isSelectable = false
         self.messageTextView.isScrollEnabled = false
         self.messageTextView.isEditable = false
         self.messageTextView.backgroundColor = UIColor.clear
@@ -34,7 +34,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
     func createMessageBubbleForMessage(message: TPTextMessage){
         
         //Create Message Bubble
-        createMsgBubbleForMessage(message: message)
+        self.createMsgBubbleForMessage(message: message)
         
         //Header View (Sender name for Incoming Messages in Group Chat)
         if message.getMessageHeaderSize() != .zero{
@@ -86,7 +86,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         self.messageBubble?.removeFromSuperview()
         
         let bubbleSize = message.getMessageBubbleSize()
-        self.messageBubble = UIImageView(frame:  CGRect(x: (message.category == .Incoming ? HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : self.contentView.frame.width - HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL - bubbleSize.width), y: 0, width: bubbleSize.width, height: bubbleSize.height))
+        self.messageBubble = TPMessageBubbleView(frame:  CGRect(x: (message.category == .Incoming ? HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : self.contentView.frame.width - HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL - bubbleSize.width), y: 0, width: bubbleSize.width, height: bubbleSize.height))
 //        self.messageBubble.clipsToBounds = true
         self.messageBubble.tintColor = message.category.getBubbleColor()
         self.messageBubble.layer.cornerRadius = MESSAGE_BUBBLE_CORNER_RADIUS
@@ -118,6 +118,9 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         
         self.messageBubble.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0).isActive = true
         self.messageBubble.widthAnchor.constraint(equalToConstant: bubbleSize.width).isActive = true
+     
+        //enable user interaction
+        self.messageBubble.isUserInteractionEnabled = true
     }
     
     
@@ -129,6 +132,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         
         return message.getMessageBubbleSize().height + PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS
     }
+    
     
     
     

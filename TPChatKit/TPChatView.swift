@@ -42,7 +42,9 @@ class TPChatView: UIView {
         self.messagesCollectionView?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor).isActive = true
     }
     
-    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
