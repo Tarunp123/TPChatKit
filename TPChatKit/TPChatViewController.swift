@@ -24,7 +24,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   TPTextMessage(id: "5", text: "Have you heard of TPChatKit?", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "6", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "7", text: "Sounds like a UI Kit🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
-                                                  TPTextMessage(id: "8", text: "It's a cool chat kit that you can use in your iOS App to add chat functionality in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "8", text: "It's a cool chat kit that you can use in your iOS App to add chat feature in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "9", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "10", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "11", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
@@ -35,8 +35,6 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   TPTextMessage(id: "16", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "17", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "18", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
-                                                  
-                                                  
                                                 ]
     
     private lazy var messages : [TPMessage] = []
@@ -192,6 +190,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as? TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
+        
         let longPressGR = TPLongPressGestureRecognizer(target: self, action: #selector(didLongPressMessage(gestureRecognizer: )))
         longPressGR.message = messages[indexPath.row]
         longPressGR.minimumPressDuration = MESSAGE_BUBBLE_LONG_PRESS_DURATION
@@ -199,6 +198,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         return cell;
     }
     
+  
     
     //MARK:- CollectionView Delegate methods
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

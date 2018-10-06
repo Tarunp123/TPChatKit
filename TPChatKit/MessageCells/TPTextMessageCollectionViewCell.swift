@@ -19,9 +19,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.messageTextView.isSelectable = false
-        self.messageTextView.isScrollEnabled = false
-        self.messageTextView.isEditable = false
+        self.messageTextView.isUserInteractionEnabled = false
         self.messageTextView.backgroundColor = UIColor.clear
         self.messageTextView.textContainerInset = UIEdgeInsets.zero
 
@@ -87,7 +85,7 @@ class TPTextMessageCollectionViewCell: UICollectionViewCell {
         
         let bubbleSize = message.getMessageBubbleSize()
         self.messageBubble = TPMessageBubbleView(frame:  CGRect(x: (message.category == .Incoming ? HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : self.contentView.frame.width - HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL - bubbleSize.width), y: 0, width: bubbleSize.width, height: bubbleSize.height))
-//        self.messageBubble.clipsToBounds = true
+        self.messageBubble.clipsToBounds = true
         self.messageBubble.tintColor = message.category.getBubbleColor()
         self.messageBubble.layer.cornerRadius = MESSAGE_BUBBLE_CORNER_RADIUS
         self.contentView.addSubview(self.messageBubble)
