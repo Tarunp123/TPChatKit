@@ -22,13 +22,13 @@ var MESSAGE_SENDER_FONT : UIFont{
 
 var MESSAGE_TEXT_FONT : UIFont {
     get{
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.body)
+        return UIFont.preferredFont(forTextStyle: UIFont.TextStyle.body)
     }
 }
 
 var TIMESTAMP_FONT : UIFont {
     get{
-        return UIFont.preferredFont(forTextStyle: UIFontTextStyle.caption2)
+        return UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption2)
     }
 }
 

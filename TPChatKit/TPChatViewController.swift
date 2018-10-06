@@ -110,9 +110,9 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         super.viewWillAppear(animated)
         
         //Add Observers
-        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: NSNotification.Name.UIApplicationWillEnterForeground, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationDidBecomeActive), name: UIApplication.willEnterForegroundNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         //Configure Nav bar
         self.title = "Homies"
@@ -190,7 +190,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
 
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as! TPTextMessageCollectionViewCell
+        let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as? TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
         let longPressGR = TPLongPressGestureRecognizer(target: self, action: #selector(didLongPressMessage(gestureRecognizer: )))
         longPressGR.message = messages[indexPath.row]
@@ -329,14 +329,14 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     //MARK:- Keyboard events
     @objc func handleKeyboardNotification(notification: NSNotification){
         
-        if notification.name == NSNotification.Name.UIKeyboardWillHide{
+        if notification.name == UIResponder.keyboardWillHideNotification{
             self.chatView?.messagesCollectionView?.contentInset = UIEdgeInsets.zero
-        }else if notification.name == .UIKeyboardWillChangeFrame{
+        }else if notification.name == UIResponder.keyboardWillChangeFrameNotification{
             guard let userInfo = notification.userInfo else{
                 return
             }
 
-            let keyboardScreenEndFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let keyboardScreenEndFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
             self.chatView?.messagesCollectionView?.contentInset = .init(top: 0, left: 0, bottom: keyboardViewEndFrame.height - TOOLBAR_HEIGHT + PADDING_BETWEEN_CELLS_FROM_DIFFERENT_USERS, right: 0)
             self.chatView?.messagesCollectionView?.scrollIndicatorInsets = self.chatView!.messagesCollectionView!.contentInset

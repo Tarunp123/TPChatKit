@@ -42,8 +42,8 @@ class TPChatViewToolbar: UIView {
         //Send Button
         self.sendButton = UIButton()
         self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn1"), for: .normal)
-        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn0"), for: UIControlState.disabled)
-        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtnFilled"), for: UIControlState.highlighted)
+        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn0"), for: UIControl.State.disabled)
+        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtnFilled"), for: UIControl.State.highlighted)
         self.backgroundView?.addSubview(self.sendButton!)
         self.sendButton?.translatesAutoresizingMaskIntoConstraints = false
         self.sendButton?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -7.5).isActive = true

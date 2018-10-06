@@ -37,7 +37,7 @@ extension UILabel{
         
         let myFont: CTFont = CTFontCreateWithName(font.fontName as CFString, font.pointSize, nil)
         let attStr = NSMutableAttributedString(string: text)
-        attStr.addAttribute(kCTFontAttributeName as NSAttributedStringKey, value: myFont, range: NSRange(location: 0, length: attStr.length))
+        attStr.addAttribute(kCTFontAttributeName as NSAttributedString.Key, value: myFont, range: NSRange(location: 0, length: attStr.length))
         
         let frameSetter: CTFramesetter = CTFramesetterCreateWithAttributedString(attStr as CFAttributedString)
         let path: CGMutablePath = CGMutablePath()
