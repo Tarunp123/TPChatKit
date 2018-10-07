@@ -56,13 +56,17 @@ class TPMessage: NSObject, Messageable {
             }
         }
         
-        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let headerSize = self.messageHeaderSize{
-            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+        if let headerSize = self.messageHeaderSize{
+            if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt{
+                if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                    return headerSize
+                }
+            }else{
                 return headerSize
             }
         }
         
-        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: msgBubbleMaxWidth - (self.category == .Incoming ? (INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left + INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right) : (OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.left + OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right)), maxHeight: nil)
+        let requiredSizeForSenderNameLabel = UILabel.getSizeToFitText(text: self.sender.name, font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE, maxWidth: MESSAGE_BODY_MAX_WIDTH, maxHeight: nil)
         
         self.messageHeaderSize = CGSize(width: requiredSizeForSenderNameLabel.width, height: UILabel.heightForSingleLine(font: MESSAGE_SENDER_FONT, fontPointSize: MESSAGE_SENDER_FONT_SIZE))
         
@@ -72,19 +76,25 @@ class TPMessage: NSObject, Messageable {
         return self.messageHeaderSize!
     }
     
+    
     func getMessageBodySize() -> CGSize {
         fatalError("func 'getMessageBodySize() -> CGSize' must be overriden by subclass of TPMessage")
     }
     
+    
     func getTimestampSize() -> CGSize {
         
-        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let timestampSize = self.timestampSize{
-            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+        if let timestampSize = self.timestampSize{
+            if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt{
+                if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                    return timestampSize
+                }
+            }else{
                 return timestampSize
             }
         }
         
-        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
+        let timestampLabelSize = UILabel.getSizeToFitText(text: String.getTimeStampForMsgBubbleForDate(date: self.timestamp ?? Date()), font: TIMESTAMP_FONT, fontPointSize: TIMESTAMP_FONT_SIZE, maxWidth: MESSAGE_BODY_MAX_WIDTH, maxHeight: nil)
         
         //Storing to avoid re-calculation
         self.timestampSize = timestampLabelSize
@@ -94,8 +104,12 @@ class TPMessage: NSObject, Messageable {
     
     
     func getMessageBubbleSize() -> CGSize{
-        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let bubbleSize = messageBubbleSize{
-            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+        if let bubbleSize = messageBubbleSize{
+            if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt{
+                if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                    return bubbleSize
+                }
+            }else{
                 return bubbleSize
             }
         }

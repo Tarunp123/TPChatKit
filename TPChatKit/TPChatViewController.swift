@@ -120,6 +120,12 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+
     
     //MARK: Input Accessory View
     override var inputAccessoryView: UIView?{
@@ -138,13 +144,11 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     @objc
     func applicationDidBecomeActive(){
         
-        guard let currentPointSize = currentFontPointSize else{
-            return
-        }
-        
-        //Font size has not changed
-        if currentPointSize == MESSAGE_TEXT_FONT_SIZE{
-            return
+        if let pointSize = currentFontPointSize{
+            if pointSize == MESSAGE_TEXT_FONT_SIZE{
+                //Font size has not changed
+                return
+            }
         }
         
         //Font size has changed
@@ -160,12 +164,6 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         
         //reload messages
         self.chatView!.messagesCollectionView?.reloadData()
-    }
-    
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(self)
     }
     
     

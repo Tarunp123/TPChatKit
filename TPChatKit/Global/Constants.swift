@@ -77,7 +77,7 @@ let INCOMING_MESSAGE_BUBBLE_CONTENT_INSET = UIEdgeInsets(top: 5, left: 15, botto
 let OUTGING_MESSAGE_BUBBLE_CONTENT_INSET = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 15)
 let MESSAGE_BUBBLE_LONG_PRESS_DURATION : CFTimeInterval = 0.5
 
-var MESSAGE_TEXT_MAX_WIDTH : CGFloat {
+var MESSAGE_BODY_MAX_WIDTH : CGFloat {
     get{
         return msgBubbleMaxWidth - INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.left - INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right
     }

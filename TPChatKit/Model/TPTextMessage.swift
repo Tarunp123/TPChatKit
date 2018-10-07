@@ -21,13 +21,17 @@ class TPTextMessage: TPMessage {
     
    override func getMessageBodySize() -> CGSize {
     
-        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let bodySize = messageBodySize{
-            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+        if let bodySize = messageBodySize{
+            if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt{
+                if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                    return bodySize
+                }
+            }else{
                 return bodySize
             }
         }
     
-        let msgLabelSize = UITextView.getSizeToFitText(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: MESSAGE_TEXT_MAX_WIDTH, maxHeight: nil)
+        let msgLabelSize = UITextView.getSizeToFitText(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: MESSAGE_BODY_MAX_WIDTH, maxHeight: nil)
     
         //Storing to avoid re-calculation
         self.messageBodySize = msgLabelSize
@@ -37,8 +41,12 @@ class TPTextMessage: TPMessage {
 
     
     override func getMessageBubbleSize() -> CGSize {
-        if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt, let bubbleSize = messageBubbleSize{
-            if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+        if let bubbleSize = messageBubbleSize{
+            if let lastViewTransitionTimestamp = viewSizeTransitionedAt, let bubbleSizeCalculatedAt = messageBubbleSizeCalculatedAt{
+                if bubbleSizeCalculatedAt.compare(lastViewTransitionTimestamp) == .orderedDescending{
+                    return bubbleSize
+                }
+            }else{
                 return bubbleSize
             }
         }
@@ -56,9 +64,15 @@ class TPTextMessage: TPMessage {
             //Vertical Placement
             msgBubbleWidth = (self.messageBodySize!.width > self.timestampSize!.width ? self.messageBodySize!.width : self.timestampSize!.width) + horizontalContentPadding
             
-            let lastLineWidth = UITextView.getLastLineSize(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: MESSAGE_TEXT_MAX_WIDTH)
-
-            if (lastLineWidth.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP) <= MESSAGE_TEXT_MAX_WIDTH{
+            //split message text to lines
+            let lines = UITextView.getLines(text: self.text, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: self.messageBodySize!.width)
+            
+            //calculate size of last line
+            let lastLineSize = UITextView.getSizeToFitText(text: lines.last!, font: MESSAGE_TEXT_FONT, fontPointSize: MESSAGE_TEXT_FONT_SIZE, maxWidth: self.messageBodySize!.width, maxHeight: nil)
+            
+            //check if
+            //(last line + timestamp can fit in same line) && (calculations done to find number of lines are accurate)
+            if (lastLineSize.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP) <= self.messageBodySize!.width && CGFloat(lines.count)*lastLineSize.height == self.messageBodySize!.height{
                 msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding
             }else{
                 msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + self.timestampSize!.height

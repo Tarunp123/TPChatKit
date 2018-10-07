@@ -27,35 +27,6 @@ extension UILabel{
         return label.sizeThatFits(CGSize(width: maxWidth, height: maxHeight ?? CGFloat.greatestFiniteMagnitude))
     }
     
-    func getLinesArrayOfString() -> [String] {
-        
-        var linesArray = [String]()
-        
-        guard let text = self.text, let font = self.font else {return linesArray}
-        
-        let rect = self.frame
-        
-        let myFont: CTFont = CTFontCreateWithName(font.fontName as CFString, font.pointSize, nil)
-        let attStr = NSMutableAttributedString(string: text)
-        attStr.addAttribute(kCTFontAttributeName as NSAttributedString.Key, value: myFont, range: NSRange(location: 0, length: attStr.length))
-        
-        let frameSetter: CTFramesetter = CTFramesetterCreateWithAttributedString(attStr as CFAttributedString)
-        let path: CGMutablePath = CGMutablePath()
-        path.addRect(CGRect(x: 0, y: 0, width: rect.size.width, height: 100000), transform: .identity)
-        
-        let frame: CTFrame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, nil)
-        guard let lines = CTFrameGetLines(frame) as? [Any] else {return linesArray}
-        
-        for line in lines {
-            let lineRef = line as! CTLine
-            let lineRange: CFRange = CTLineGetStringRange(lineRef)
-            let range = NSRange(location: lineRange.location, length: lineRange.length)
-            let lineString: String = (text as NSString).substring(with: range)
-            linesArray.append(lineString)
-        }
-        return linesArray
-    }
-    
 }
 
 extension UITextView{
@@ -69,8 +40,7 @@ extension UITextView{
     }
     
     
-    static func getLastLineSize(text: String, font: UIFont, fontPointSize pointSize: CGFloat, maxWidth: CGFloat) -> CGSize {
-        
+    static func getLines(text: String, font: UIFont, fontPointSize pointSize: CGFloat, maxWidth: CGFloat) -> [String] {
         var linesArray = [String]()
         
         let myFont: CTFont = CTFontCreateWithName(font.fontName as CFString, font.pointSize, nil)
@@ -82,7 +52,7 @@ extension UITextView{
         path.addRect(CGRect(x: 0, y: 0, width: maxWidth, height: CGFloat.greatestFiniteMagnitude), transform: .identity)
         
         let frame: CTFrame = CTFramesetterCreateFrame(frameSetter, CFRangeMake(0, 0), path, nil)
-        guard let lines = CTFrameGetLines(frame) as? [Any] else {return .zero}
+        guard let lines = CTFrameGetLines(frame) as? [Any] else {return linesArray}
         
         for line in lines {
             let lineRef = line as! CTLine
@@ -92,11 +62,7 @@ extension UITextView{
             linesArray.append(lineString)
         }
         
-        if let lastLine =  linesArray.last{
-            return UITextView.getSizeToFitText(text: lastLine, font: font, fontPointSize: font.pointSize, maxWidth: msgBubbleMaxWidth, maxHeight: nil)
-        }
-        
-        return .zero
+        return linesArray
     }
     
     
