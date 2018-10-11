@@ -11,7 +11,7 @@ import UIKit
 
 //Cell Id
 let MESSGAE_CELL_ID = "TPMessageCell"
-
+let HEADER_VIEW_ID = "TPMessageHeaderView"
 
 //Font
 var MESSAGE_SENDER_FONT : UIFont{
@@ -29,6 +29,12 @@ var MESSAGE_TEXT_FONT : UIFont {
 var TIMESTAMP_FONT : UIFont {
     get{
         return UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption2)
+    }
+}
+
+var HEADER_DATE_FONT : UIFont{
+    get{
+        return UIFont.preferredFont(forTextStyle: UIFont.TextStyle.caption1)
     }
 }
 
@@ -51,6 +57,11 @@ var TIMESTAMP_FONT_SIZE : CGFloat {
     }
 }
 
+var HEADER_DATE_FONT_SIZE : CGFloat{
+    get{
+        return HEADER_DATE_FONT.pointSize
+    }
+}
 
 var currentFontPointSize : CGFloat?
 
@@ -62,6 +73,9 @@ let INCOMING_TIMESTAMP_TEXT_COLOR = UIColor.gray
 let OUTGOING_MESSAGE_BUBBLE_COLOR = UIColor(red: 214/255.0, green: 254/255.0, blue: 199/255.0, alpha: 1.0)
 let OUTGOING_MESSAGE_TEXT_COLOR = UIColor.black
 let OUTGOING_TIMESTAMP_TEXT_COLOR = UIColor.gray
+
+let HEADER_DATE_LABEL_BACKGROUND_COLOR = UIColor(red: 172/255.0, green: 209/255.0, blue: 255/255.0, alpha: 1.0)
+let HEADER_DATE_LABEL_TEXT_COLOR = UIColor.black
 
 //Bubble
 let HORIZONTAL_PADDING_BETWEEN_MESSAGE_BUBBLE_AND_CELL : CGFloat = 5.0
@@ -99,4 +113,6 @@ let TOOLBAR_BUTTON_WIDTH : CGFloat = 32.0
 
 //MARK:- Strings
 let INPUT_FIELD_PLACEHOLDER = "Type a message..."
+
+
 

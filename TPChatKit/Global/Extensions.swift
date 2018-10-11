@@ -97,9 +97,30 @@ extension UICollectionView {
     }
 }
 
-extension UIFont{
+extension Date{
     
-//    static func getWidthRequiredByOneCharacter
+    func getHeaderViewString() -> String{
+        
+        //check if date is today
+        if Calendar.current.compare(self, to: Date(), toGranularity: Calendar.Component.day) == .orderedSame{
+            return "Today"
+        }
+        
+        let dateFormatter = DateFormatter()
+        //date is last within 7 days
+        if Calendar.current.compare(self, to: Date(), toGranularity: Calendar.Component.weekOfYear) == .orderedSame{
+            dateFormatter.dateFormat = "EEEE"
+            return dateFormatter.string(from: self)
+        }
+        
+        if Calendar.current.compare(self, to: Date(), toGranularity: Calendar.Component.year) == .orderedSame{
+            dateFormatter.dateFormat = "MMM d"
+        }else{
+            dateFormatter.dateFormat = "dd/MM/yy"
+        }
+        
+        return dateFormatter.string(from: self)
+    }
     
 }
 

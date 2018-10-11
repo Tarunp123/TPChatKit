@@ -14,3 +14,9 @@ var msgBubbleMaxWidth : CGFloat!
 var viewSizeTransitionedAt : Date?
 
 var currentChatType : TPChatType!
+
+var headerDateHeight : CGFloat{
+    get{
+        return UILabel.heightForSingleLine(font: HEADER_DATE_FONT, fontPointSize: HEADER_DATE_FONT_SIZE)
+    }
+}

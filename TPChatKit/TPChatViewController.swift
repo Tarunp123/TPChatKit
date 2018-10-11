@@ -168,7 +168,6 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     
     //MARK: CollectionView DataSource methods
-    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -179,12 +178,6 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: TPTextMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
-    }
-
-
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as? TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
@@ -196,13 +189,26 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         return cell;
     }
     
-  
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: HEADER_VIEW_ID, for: indexPath) as? SectionHeaderView
+        headerView?.setupHeaderViewForDate(date: Date())
+        return headerView!
+        
+    }
     
     //MARK:- CollectionView Delegate methods
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         self.longPressedMessageBubble = nil
         self.longPressedMessage = nil
     }
+    
+    
+    //MARK:- UICollectionViewDelegateFlowLayout methods
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: TPTextMessageCollectionViewCell.getCellHeightForMsg(message: messages[indexPath.row]))
+    }
+    
+    
     
     //MARK:- Message Long Press Events
     private var longPressedMessageBubble : TPMessageBubbleView?
