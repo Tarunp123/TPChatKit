@@ -30,7 +30,7 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 
 ## Features
 1. **Universal Layout**. Supports all iOS devices and orientations.
-2. Currently supports **Text Messages**
+2. Currently supports **Text & Photo Messages**
 3. Supports **Single and Group Chat**
 4. Supports **Custom Message Bubble Template Image**
 5. **Message Grouping** 
