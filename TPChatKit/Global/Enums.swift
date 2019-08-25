@@ -11,6 +11,7 @@ import UIKit
 
 enum TPMessageType {
     case Text
+    case Picture
 }
 
 
@@ -43,6 +44,24 @@ enum TPMessageCategory {
             return INCOMING_TIMESTAMP_TEXT_COLOR
         case .Outgoing:
             return OUTGOING_TIMESTAMP_TEXT_COLOR
+        }
+    }
+    
+    func getMediaTimestampColor() -> UIColor{
+        switch self{
+        case .Incoming:
+            return INCOMING_MEDIA_TIMESTAMP_TEXT_COLOR
+        case .Outgoing:
+            return OUTGOING_MEDIA_TIMESTAMP_TEXT_COLOR
+        }
+    }
+    
+    var padding: UIEdgeInsets{
+        switch self {
+        case .Incoming:
+            return INCOMING_MESSAGE_BUBBLE_CONTENT_INSET
+        case .Outgoing:
+            return OUTGING_MESSAGE_BUBBLE_CONTENT_INSET
         }
     }
     

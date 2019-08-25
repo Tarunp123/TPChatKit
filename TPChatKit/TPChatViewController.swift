@@ -19,8 +19,8 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     private lazy var dummyMsgs : [TPMessage] = [TPTextMessage(id: "1", text: "Hi John and Carl", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "2", text: "Hey Tarun", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "3", text: "Hey man", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
-                                                  TPTextMessage(id: "4", text: "Wassup", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+//                                                  TPTextMessage(id: "3", text: "Hey man", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
+                                                  TPTextMessage(id: "4", text: "Wassup", timestamp: nil, sender: self.otherParticipants[0], category: .Incoming),
                                                   TPTextMessage(id: "5", text: "Have you heard of TPChatKit?", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "6", text: "What is it?🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "7", text: "Sounds like a UI Kit🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
@@ -35,6 +35,10 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   TPTextMessage(id: "16", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "17", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "18", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPPictureMessage(id: "19", imageURL: "https://google.com", imageSize: CGSize(width: 300, height: 200), timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPPictureMessage(id: "20", imageURL: "https://google.com", imageSize: CGSize(width: 100, height: 200), timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPPictureMessage(id: "21", imageURL: "https://google.com", imageSize: CGSize(width: 150, height: 150), timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPPictureMessage(id: "22", imageURL: "https://google.com", imageSize: CGSize(width: 500, height: 5), timestamp: nil, sender: self.otherParticipants[1], category: .Incoming)
                                                 ]
     
     private lazy var messages : [TPMessage] = []
@@ -89,6 +93,9 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         //when user changes the font point size while app is running.
         currentFontPointSize = MESSAGE_TEXT_FONT_SIZE
         
+//        let fileURLStr = "https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView3.PNG"//"https://images.pexels.com/photos/2235966/pexels-photo-2235966.jpeg?cs=srgb&dl=bloom-blossom-close-up-2235966.jpg"
+//        let networkManager = TPDownloadManager(fileURL: fileURLStr, delegate: self)
+//        networkManager?.startDownload()
     }
 
     
@@ -179,8 +186,29 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell : TPTextMessageCollectionViewCell! = collectionView.dequeueReusableCell(withReuseIdentifier: MESSGAE_CELL_ID, for: indexPath) as? TPTextMessageCollectionViewCell
+        switch messages[indexPath.row].type! {
+        case .Text:
+            return self.collectionView(collectionView: collectionView, textMessageCellForItemAt: indexPath)
+        case .Picture:
+            return self.collectionView(collectionView: collectionView, pictureMessageCellForItemAt: indexPath)
+        }
+        
+    }
+    
+    func collectionView(collectionView: UICollectionView, textMessageCellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TEXT_MESSGAE_CELL_ID, for: indexPath) as! TPTextMessageCollectionViewCell
         cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPTextMessage)
+        
+        let longPressGR = TPLongPressGestureRecognizer(target: self, action: #selector(didLongPressMessage(gestureRecognizer: )))
+        longPressGR.message = messages[indexPath.row]
+        longPressGR.minimumPressDuration = MESSAGE_BUBBLE_LONG_PRESS_DURATION
+        cell.messageBubble.addGestureRecognizer(longPressGR)
+        return cell;
+    }
+    
+    func collectionView(collectionView: UICollectionView, pictureMessageCellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PICTURE_MESSGAE_CELL_ID, for: indexPath) as! TPPictureMessageCollectionViewCell
+        cell.createMessageBubbleForMessage(message: messages[indexPath.row] as! TPPictureMessage)
         
         let longPressGR = TPLongPressGestureRecognizer(target: self, action: #selector(didLongPressMessage(gestureRecognizer: )))
         longPressGR.message = messages[indexPath.row]
@@ -236,7 +264,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         if let messageType = message.type{
             var menuItems = [UIMenuItem]()
             switch messageType {
-            case .Text:
+            case .Text, .Picture:
                 let copyMenuItem = UIMenuItem(title: "Copy", action: #selector(didTapCopyMenuItem(menuItem:)))
                 menuItems.append(copyMenuItem)
             }
@@ -256,6 +284,8 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                 switch messageType {
                 case .Text:
                     UIPasteboard.general.string = (message as! TPTextMessage).text
+                case .Picture:
+                    UIPasteboard.general.string = (message as! TPPictureMessage).imageURL
                 }
             }
         }
@@ -354,3 +384,18 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
 }
 
+
+
+extension TPChatViewController: TPDownloadManagerDelegate{
+    func tpDownloadManager(_ manager: TPDownloadManager, didFailToDownloadFromURL remoteURL: URL, withError error: Error?) {
+        print(#function, error)
+    }
+    
+    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileChunkFromURL remoteURL: URL, withProgress progress: Double) {
+        print(#function, progress)
+    }
+    
+    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileFromURL remoteURL: URL, toLocation location: URL) {
+        print(#function, location)
+    }
+}

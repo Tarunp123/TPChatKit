@@ -126,7 +126,7 @@ class TPMessage: NSObject, Messageable {
         if self.messageBodySize!.width + self.timestampSize!.width  + horizontalContentPadding + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE > msgBubbleMaxWidth{
             //Vertical Placement
             msgBubbleWidth = (self.messageBodySize!.width > self.timestampSize!.width ? self.messageBodySize!.width : self.timestampSize!.width) + horizontalContentPadding
-            msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + self.timestampSize!.height
+            msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_BODY_AND_TIMESTAMP + self.timestampSize!.height
 
         }else{
             //Horizontal Placement

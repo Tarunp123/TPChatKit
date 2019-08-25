@@ -16,6 +16,7 @@ class TPTextMessage: TPMessage {
     init(id: String, text: String, timestamp: Date?, sender: TPPerson, category: TPMessageCategory) {
         super.init(id: id, type: .Text, timestamp: timestamp, sender: sender, category: category)
         self.text = text
+        self.type = .Text
     }
     
     
@@ -75,7 +76,7 @@ class TPTextMessage: TPMessage {
             if (lastLineSize.width + self.timestampSize!.width + HORIZONTAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP) <= self.messageBodySize!.width && CGFloat(lines.count)*lastLineSize.height == self.messageBodySize!.height{
                 msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding
             }else{
-                msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_TEXT_AND_TIMESTAMP + self.timestampSize!.height
+                msgBubbleHeight = self.messageBodySize!.height + verticalContentPadding + VERTICAL_PADDING_BETWEEN_MESSAGE_BODY_AND_TIMESTAMP + self.timestampSize!.height
             }
             
         }else{

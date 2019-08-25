@@ -13,7 +13,8 @@ class TPChatViewToolbar: UIView {
     var backgroundView : UIView?
     var textView : UITextView?
     var sendButton : UIButton?
-    
+    var attachmentButton: UIButton?
+    private var sendButtonWidthContraint : NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,14 +44,25 @@ class TPChatViewToolbar: UIView {
         self.sendButton = UIButton()
         self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn1"), for: .normal)
         self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn0"), for: UIControl.State.disabled)
-        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtnFilled"), for: UIControl.State.highlighted)
+        self.sendButton?.setBackgroundImage(UIImage(named: "sendMsgBtnFilled"), for: UIControl.State.highlighted)
         self.backgroundView?.addSubview(self.sendButton!)
         self.sendButton?.translatesAutoresizingMaskIntoConstraints = false
         self.sendButton?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -7.5).isActive = true
         self.sendButton?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12.5).isActive = true
-        self.sendButton?.widthAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_WIDTH).isActive = true
+        self.sendButtonWidthContraint = self.sendButton?.widthAnchor.constraint(equalToConstant: 0)
+        self.sendButtonWidthContraint?.isActive = true
         self.sendButton?.heightAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_HEIGHT).isActive = true
 
+        //Attachment button
+        self.attachmentButton = UIButton()
+        self.attachmentButton?.setBackgroundImage(UIImage(named: "attachmentIcon"), for: .normal)
+        self.backgroundView?.addSubview(self.attachmentButton!)
+        self.attachmentButton?.translatesAutoresizingMaskIntoConstraints = false
+        self.attachmentButton?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 7.5).isActive = true
+        self.attachmentButton?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12.5).isActive = true
+        self.attachmentButton?.widthAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_WIDTH).isActive = true
+        self.attachmentButton?.heightAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_HEIGHT).isActive = true
+        
         //Text field
         self.textView = UITextView()
         self.textView?.backgroundColor = UIColor.white
@@ -63,7 +75,7 @@ class TPChatViewToolbar: UIView {
         self.backgroundView?.addSubview(self.textView!)
         self.textView?.translatesAutoresizingMaskIntoConstraints = false
         self.textView?.topAnchor.constraint(equalTo: self.topAnchor, constant: 7.5).isActive = true
-        self.textView?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 7.5).isActive = true
+        self.textView?.leadingAnchor.constraint(equalTo: self.attachmentButton!.trailingAnchor, constant: 7.5).isActive = true
         self.textView?.trailingAnchor.constraint(equalTo: self.sendButton!.leadingAnchor, constant: -7.5).isActive = true
         self.textView?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -7.5).isActive = true
         
@@ -78,6 +90,7 @@ class TPChatViewToolbar: UIView {
     
     
     func updateToolbarHeight(){
+        print(#function)
         self.invalidateIntrinsicContentSize()
         
         //enable or disable scroll for text view
@@ -86,6 +99,12 @@ class TPChatViewToolbar: UIView {
         }else{
             self.textView?.isScrollEnabled = false
         }
+        
+        //update send button width
+        UIView.animate(withDuration: 1) {
+            self.sendButtonWidthContraint?.constant = self.textView!.text.isEmpty || self.textView!.text.elementsEqual(INPUT_FIELD_PLACEHOLDER) ? 0 : TOOLBAR_BUTTON_WIDTH
+        }
+
     }
     
 
