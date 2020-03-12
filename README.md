@@ -8,7 +8,7 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 ## Screenshots
 **1. Group Chat & Single Chat**
 
-![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png) &nbsp;&nbsp;
+![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat_Dark_Mode.png) &nbsp;&nbsp;
 
 
 
