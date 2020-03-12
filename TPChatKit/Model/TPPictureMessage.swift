@@ -18,7 +18,7 @@ class TPPictureMessage: TPMessage{
         super.init(id: id, type: .Text, timestamp: timestamp, sender: sender, category: category)
         self.type = .Picture
         self.imageURL = imageURL
-        self.imageSize = self.getImageSizeForDisplaying(orgSize: imageSize)
+        self.imageSize = imageSize
     }
     
     private func getImageSizeForDisplaying(orgSize: CGSize) -> CGSize{
@@ -37,7 +37,7 @@ class TPPictureMessage: TPMessage{
                 }
                 
             }else if orgSize.width < MESSAGE_IMAGE_MIN_BODY_SIZE.width{
-                //both width & height is less than than min body size
+                //width is less than than min body size
                 newSize = MESSAGE_IMAGE_MIN_BODY_SIZE
             }else{
                 newSize = orgSize
@@ -55,11 +55,19 @@ class TPPictureMessage: TPMessage{
                     newSize.width = MESSAGE_IMAGE_MIN_BODY_SIZE.width
                 }
             }else if orgSize.height < MESSAGE_IMAGE_MIN_BODY_SIZE.height{
-                //both width & height is less than than min body size
+                //height is less than than min body size
                 newSize = MESSAGE_IMAGE_MIN_BODY_SIZE
             }else{
                 newSize = orgSize
             }
+        }
+        
+        if newSize.width < MESSAGE_IMAGE_MIN_BODY_SIZE.width {
+            newSize.width = MESSAGE_IMAGE_MIN_BODY_SIZE.width
+        }
+        
+        if newSize.height < MESSAGE_IMAGE_MIN_BODY_SIZE.height {
+            newSize.height = MESSAGE_IMAGE_MIN_BODY_SIZE.height
         }
         
         return newSize
@@ -78,7 +86,7 @@ class TPPictureMessage: TPMessage{
         }
         
         //Storing to avoid re-calculation
-        self.messageBodySize = self.imageSize
+        self.messageBodySize = self.getImageSizeForDisplaying(orgSize: imageSize)
         
         return self.messageBodySize!
     }

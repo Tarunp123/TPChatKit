@@ -10,6 +10,9 @@
 		C333F0812163BB0D004DFBA8 /* TPMessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */; };
 		C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */; };
 		C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */; };
+		C39EE7B4240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE7B2240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift */; };
+		C39EE7B6240C2CC500E563A1 /* TPPictureMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE7B5240C2CC500E563A1 /* TPPictureMessage.swift */; };
+		C39EE7B9240C2CEE00E563A1 /* TPDownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C39EE7B8240C2CEE00E563A1 /* TPDownloadManager.swift */; };
 		C3BDFCA72162A78C008FDF00 /* TPLongPressGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3BDFCA62162A78C008FDF00 /* TPLongPressGestureRecognizer.swift */; };
 		C3C343A9216E88A000A6161E /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C343A8216E88A000A6161E /* SectionHeaderView.swift */; };
 		EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE2C1923213D432100B677A9 /* TPChatView.swift */; };
@@ -54,6 +57,10 @@
 		C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPMessageBubbleView.swift; sourceTree = "<group>"; };
 		C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TPMessageCollectionViewCellable.swift; path = TPChatKit/MessageCells/TPMessageCollectionViewCellable.swift; sourceTree = SOURCE_ROOT; };
+		C39EE7B1240C2C9000E563A1 /* TPMessageCollectionViewCellable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPMessageCollectionViewCellable.swift; sourceTree = "<group>"; };
+		C39EE7B2240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPictureMessageCollectionViewCell.swift; sourceTree = "<group>"; };
+		C39EE7B5240C2CC500E563A1 /* TPPictureMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPPictureMessage.swift; sourceTree = "<group>"; };
+		C39EE7B8240C2CEE00E563A1 /* TPDownloadManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TPDownloadManager.swift; sourceTree = "<group>"; };
 		C3BDFCA62162A78C008FDF00 /* TPLongPressGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPLongPressGestureRecognizer.swift; sourceTree = "<group>"; };
 		C3C343A8216E88A000A6161E /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		EE2C1923213D432100B677A9 /* TPChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPChatView.swift; sourceTree = "<group>"; };
@@ -108,12 +115,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C39EE7B7240C2CEE00E563A1 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C39EE7B8240C2CEE00E563A1 /* TPDownloadManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
 		EE664089212FF392008C8B45 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				EE66408A212FF39F008C8B45 /* TPMessage.swift */,
 				EE66408C212FF3C7008C8B45 /* TPPerson.swift */,
 				EE66409121330A72008C8B45 /* TPTextMessage.swift */,
+				C39EE7B5240C2CC500E563A1 /* TPPictureMessage.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -136,6 +152,8 @@
 				EE9702C62108BCD300A3E3BF /* TPMessageCollectionViewCell.swift */,
 				C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */,
 				C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */,
+				C39EE7B1240C2C9000E563A1 /* TPMessageCollectionViewCellable.swift */,
+				C39EE7B2240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift */,
 			);
 			path = MessageCells;
 			sourceTree = "<group>";
@@ -181,6 +199,7 @@
 				EE2C1923213D432100B677A9 /* TPChatView.swift */,
 				EEE50833213FFB4700A41592 /* Toolbar */,
 				EE8774AA21352D7600AC91D0 /* Protocols */,
+				C39EE7B7240C2CEE00E563A1 /* Network */,
 				EE97029C2108AA3500A3E3BF /* Main.storyboard */,
 				EE97029F2108AA3500A3E3BF /* Assets.xcassets */,
 				EE9702A12108AA3500A3E3BF /* LaunchScreen.storyboard */,
@@ -279,12 +298,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Tarun Prajapati";
 				TargetAttributes = {
 					EE9702942108AA3500A3E3BF = {
 						CreatedOnToolsVersion = 9.2;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Automatic;
 					};
 					EE9702A82108AA3500A3E3BF = {
@@ -355,9 +374,11 @@
 				EE9702C72108BCD300A3E3BF /* TPMessageCollectionViewCell.swift in Sources */,
 				EE66408D212FF3C7008C8B45 /* TPPerson.swift in Sources */,
 				EE2C1926213D458700B677A9 /* TPChatViewToolbar.swift in Sources */,
+				C39EE7B6240C2CC500E563A1 /* TPPictureMessage.swift in Sources */,
 				C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */,
 				EEE50832213FFB3F00A41592 /* TPChatViewToolbarVC.swift in Sources */,
 				EE2C1924213D432100B677A9 /* TPChatView.swift in Sources */,
+				C39EE7B9240C2CEE00E563A1 /* TPDownloadManager.swift in Sources */,
 				EEFCF69F2147C1EC008AF1EE /* Variables.swift in Sources */,
 				EE66409421330BFD008C8B45 /* Enums.swift in Sources */,
 				C3C343A9216E88A000A6161E /* SectionHeaderView.swift in Sources */,
@@ -366,6 +387,7 @@
 				EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */,
 				C3BDFCA72162A78C008FDF00 /* TPLongPressGestureRecognizer.swift in Sources */,
 				EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */,
+				C39EE7B4240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift in Sources */,
 				EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */,
 				EE9702992108AA3500A3E3BF /* AppDelegate.swift in Sources */,
 				EE664086212EEA6D008C8B45 /* Extensions.swift in Sources */,
@@ -480,6 +502,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -531,6 +554,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -540,12 +564,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MP2MY9KM34;
+				DEVELOPMENT_TEAM = M73LUBGX9G;
 				INFOPLIST_FILE = "$(SRCROOT)/TPChatKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.TPChatKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.mobile.lucideus.TPChatKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -555,12 +579,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MP2MY9KM34;
+				DEVELOPMENT_TEAM = M73LUBGX9G;
 				INFOPLIST_FILE = "$(SRCROOT)/TPChatKit/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.TPChatKit;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tarunprajapati.mobile.lucideus.TPChatKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

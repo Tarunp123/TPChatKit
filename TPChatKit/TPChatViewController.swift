@@ -345,7 +345,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == INPUT_FIELD_PLACEHOLDER{
             textView.text = ""
-            textView.textColor = UIColor.black
+            textView.textColor = TOOLBAR_TEXTVIEW_TEXT_COLOR
         }
     }
     

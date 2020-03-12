@@ -22,8 +22,9 @@ class SectionHeaderView: UICollectionReusableView {
         self.dateLabel.font = HEADER_DATE_FONT.withSize(HEADER_DATE_FONT_SIZE)
         self.dateLabel.textColor = HEADER_DATE_LABEL_TEXT_COLOR
         self.dateLabel.textAlignment = .center
-        self.dateLabel.layer.backgroundColor = HEADER_DATE_LABEL_BACKGROUND_COLOR.cgColor
+        self.dateLabel.backgroundColor = HEADER_DATE_LABEL_BACKGROUND_COLOR
         self.dateLabel.layer.cornerRadius = 8
+        self.dateLabel.clipsToBounds = true
         self.addSubview(self.dateLabel)
         self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         self.dateLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true

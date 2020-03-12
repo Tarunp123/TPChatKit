@@ -17,7 +17,7 @@ class TPChatView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.backgroundColor = UIColor(red: 227/255.0, green: 216/255.0, blue: 218/255.0, alpha: 1.0)
+        self.backgroundColor = CHAT_VIEW_BACKGROUND_COLOR
         self.setupCollectionsView()
     }
     

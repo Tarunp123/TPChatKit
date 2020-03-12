@@ -65,10 +65,10 @@ class TPChatViewToolbar: UIView {
         
         //Text field
         self.textView = UITextView()
-        self.textView?.backgroundColor = UIColor.white
+        self.textView?.backgroundColor = TOOLBAR_TEXTVIEW_BACKGROUND_COLOR
         self.textView?.layer.cornerRadius = 8
         self.textView?.text = INPUT_FIELD_PLACEHOLDER
-        self.textView?.textColor = UIColor.lightGray
+        self.textView?.textColor = TOOLBAR_TEXTVIEW_PLACEHOLDER_COLOR//UIColor.lightGray
         self.textView?.textContainer.lineBreakMode = .byWordWrapping
         self.textView?.font = MESSAGE_TEXT_FONT
         self.textView?.isScrollEnabled = false
