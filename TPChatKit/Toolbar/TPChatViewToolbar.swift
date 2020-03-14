@@ -14,7 +14,9 @@ class TPChatViewToolbar: UIView {
     var textView : UITextView?
     var sendButton : UIButton?
     var attachmentButton: UIButton?
-    private var sendButtonWidthContraint : NSLayoutConstraint?
+    private var sendButtonWidthConstraint : NSLayoutConstraint?
+//    private var attachmentButtonWidthConstraint: NSLayoutConstraint?
+//    private var textViewLeadingConstraint: NSLayoutConstraint?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,20 +44,22 @@ class TPChatViewToolbar: UIView {
 
         //Send Button
         self.sendButton = UIButton()
-        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn1"), for: .normal)
-        self.sendButton?.setBackgroundImage(#imageLiteral(resourceName: "sendMsgBtn0"), for: UIControl.State.disabled)
-        self.sendButton?.setBackgroundImage(UIImage(named: "sendMsgBtnFilled"), for: UIControl.State.highlighted)
+        self.sendButton?.setBackgroundImage(UIImage(named: "sendMsgBtn0"), for: .disabled)
+        self.sendButton?.setBackgroundImage(UIImage(named: "sendMsgBtn0")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.sendButton?.setBackgroundImage(UIImage(named: "sendMsgBtn1")?.withRenderingMode(.alwaysTemplate), for: UIControl.State.highlighted)
+        self.sendButton?.imageView?.tintColor = .systemBlue
         self.backgroundView?.addSubview(self.sendButton!)
         self.sendButton?.translatesAutoresizingMaskIntoConstraints = false
         self.sendButton?.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -7.5).isActive = true
         self.sendButton?.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -12.5).isActive = true
-        self.sendButtonWidthContraint = self.sendButton?.widthAnchor.constraint(equalToConstant: 0)
-        self.sendButtonWidthContraint?.isActive = true
+        self.sendButtonWidthConstraint = self.sendButton?.widthAnchor.constraint(equalToConstant: 0)
+        self.sendButtonWidthConstraint?.isActive = true
         self.sendButton?.heightAnchor.constraint(equalToConstant: TOOLBAR_BUTTON_HEIGHT).isActive = true
 
         //Attachment button
         self.attachmentButton = UIButton()
-        self.attachmentButton?.setBackgroundImage(UIImage(named: "attachmentIcon"), for: .normal)
+        self.attachmentButton?.setBackgroundImage(UIImage(named: "attachmentIcon")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        self.attachmentButton?.tintColor = .systemBlue
         self.backgroundView?.addSubview(self.attachmentButton!)
         self.attachmentButton?.translatesAutoresizingMaskIntoConstraints = false
         self.attachmentButton?.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 7.5).isActive = true
@@ -68,10 +72,11 @@ class TPChatViewToolbar: UIView {
         self.textView?.backgroundColor = TOOLBAR_TEXTVIEW_BACKGROUND_COLOR
         self.textView?.layer.cornerRadius = 8
         self.textView?.text = INPUT_FIELD_PLACEHOLDER
-        self.textView?.textColor = TOOLBAR_TEXTVIEW_PLACEHOLDER_COLOR//UIColor.lightGray
+        self.textView?.textColor = TOOLBAR_TEXTVIEW_PLACEHOLDER_COLOR
         self.textView?.textContainer.lineBreakMode = .byWordWrapping
         self.textView?.font = MESSAGE_TEXT_FONT
         self.textView?.isScrollEnabled = false
+        self.textView?.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         self.backgroundView?.addSubview(self.textView!)
         self.textView?.translatesAutoresizingMaskIntoConstraints = false
         self.textView?.topAnchor.constraint(equalTo: self.topAnchor, constant: 7.5).isActive = true
@@ -89,7 +94,7 @@ class TPChatViewToolbar: UIView {
     }
     
     
-    func updateToolbarHeight(){
+    func updateToolbar(){
         print(#function)
         self.invalidateIntrinsicContentSize()
         
@@ -100,9 +105,14 @@ class TPChatViewToolbar: UIView {
             self.textView?.isScrollEnabled = false
         }
         
-        //update send button width
+        //update elements
+        let cleanedText = self.textView?.text.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         UIView.animate(withDuration: 1) {
-            self.sendButtonWidthContraint?.constant = self.textView!.text.isEmpty || self.textView!.text.elementsEqual(INPUT_FIELD_PLACEHOLDER) ? 0 : TOOLBAR_BUTTON_WIDTH
+            if cleanedText.isEmpty || cleanedText.elementsEqual(INPUT_FIELD_PLACEHOLDER) {  //Input bar is empty
+                self.sendButtonWidthConstraint?.constant = 0
+            }else { //Input bar is not empty
+                self.sendButtonWidthConstraint?.constant = TOOLBAR_BUTTON_WIDTH
+            }
         }
 
     }

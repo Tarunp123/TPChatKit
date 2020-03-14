@@ -21,6 +21,7 @@ class TPPictureMessageCollectionViewCell: UICollectionViewCell {
         
 //        self.messageTextView.isUserInteractionEnabled = false
         self.imageView.backgroundColor = UIColor.lightGray
+        self.imageView.contentMode = .scaleAspectFill
         self.imageView.layer.cornerRadius = 6.0
         self.imageView.clipsToBounds = true
         self.timestampLabel.textAlignment = .right
@@ -73,6 +74,9 @@ class TPPictureMessageCollectionViewCell: UICollectionViewCell {
         self.timestampLabel.frame = CGRect(x: self.messageBubble.frame.width - ((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.right : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.right) - timestampLabelSize.width - PADDING_BETWEEN_TIMESTAMP_AND_MESSAGE_BUBBLE * 1.5, y: self.messageBubble.frame.maxY - (((message.category == .Incoming) ? INCOMING_MESSAGE_BUBBLE_CONTENT_INSET.bottom : OUTGING_MESSAGE_BUBBLE_CONTENT_INSET.bottom) * 1.5) - timestampLabelSize.height, width: timestampLabelSize.width, height: timestampLabelSize.height)
         
         self.messageBubble.addSubview(self.timestampLabel)
+        
+        self.imageView.moa.url = message.imageURL
+        
     }
     
     

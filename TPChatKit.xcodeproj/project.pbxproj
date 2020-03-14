@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3305D65241AAAEB0048A446 /* Moa.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3305D64241AAAEB0048A446 /* Moa.swift */; };
 		C333F0812163BB0D004DFBA8 /* TPMessageBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */; };
 		C369240D214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */; };
 		C369240F214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		C3305D64241AAAEB0048A446 /* Moa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Moa.swift; sourceTree = "<group>"; };
 		C333F0802163BB0D004DFBA8 /* TPMessageBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPMessageBubbleView.swift; sourceTree = "<group>"; };
 		C369240C214AA5C5003A3DC3 /* TPTextMessageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TPTextMessageCollectionViewCell.swift; sourceTree = "<group>"; };
 		C369240E214AA936003A3DC3 /* TPMessageCollectionViewCellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TPMessageCollectionViewCellable.swift; path = TPChatKit/MessageCells/TPMessageCollectionViewCellable.swift; sourceTree = SOURCE_ROOT; };
@@ -115,6 +117,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C3305D63241AAADC0048A446 /* External */ = {
+			isa = PBXGroup;
+			children = (
+				C3305D64241AAAEB0048A446 /* Moa.swift */,
+			);
+			path = External;
+			sourceTree = "<group>";
+		};
 		C39EE7B7240C2CEE00E563A1 /* Network */ = {
 			isa = PBXGroup;
 			children = (
@@ -190,6 +200,7 @@
 		EE9702972108AA3500A3E3BF /* TPChatKit */ = {
 			isa = PBXGroup;
 			children = (
+				C3305D63241AAADC0048A446 /* External */,
 				EE664089212FF392008C8B45 /* Model */,
 				EE8774A921352D5500AC91D0 /* MessageCells */,
 				EE6640902132D372008C8B45 /* Global */,
@@ -386,6 +397,7 @@
 				C333F0812163BB0D004DFBA8 /* TPMessageBubbleView.swift in Sources */,
 				EE97029B2108AA3500A3E3BF /* TPChatViewController.swift in Sources */,
 				C3BDFCA72162A78C008FDF00 /* TPLongPressGestureRecognizer.swift in Sources */,
+				C3305D65241AAAEB0048A446 /* Moa.swift in Sources */,
 				EE66408B212FF39F008C8B45 /* TPMessage.swift in Sources */,
 				C39EE7B4240C2C9000E563A1 /* TPPictureMessageCollectionViewCell.swift in Sources */,
 				EE66409221330A72008C8B45 /* TPTextMessage.swift in Sources */,

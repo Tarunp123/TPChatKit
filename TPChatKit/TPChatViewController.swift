@@ -26,19 +26,19 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
                                                   TPTextMessage(id: "7", text: "Sounds like a UI Kit🤔", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "8", text: "It's a cool chat kit that you can use in your iOS App to add chat feature in very less time😎", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "9", text: "It will really accelerate your app's developement process🚀", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "10", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
-                                                  TPTextMessage(id: "11", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+                                                  /*TPTextMessage(id: "11", text: "Do you have it's link or something?", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "12", text: "Sure! Here's the link - https://github.com/Tarunp123/TPChatKit", timestamp: nil, sender: me, category: .Outgoing),
                                                   TPTextMessage(id: "13", text: "Thanks Tarun! Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "14", text: "Will definitely check it out!😍", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
                                                   TPTextMessage(id: "15", text: "Hey Tarun! Is this your framework?", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "16", text: "??", timestamp: nil, sender: self.otherParticipants[1], category: .Incoming),
                                                   TPTextMessage(id: "17", text: "Yup", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPTextMessage(id: "18", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPPictureMessage(id: "19", imageURL: "https://google.com", imageSize: CGSize(width: 300, height: 200), timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPPictureMessage(id: "20", imageURL: "https://google.com", imageSize: CGSize(width: 100, height: 200), timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPPictureMessage(id: "21", imageURL: "https://google.com", imageSize: CGSize(width: 150, height: 150), timestamp: nil, sender: me, category: .Outgoing),
-                                                  TPPictureMessage(id: "22", imageURL: "https://google.com", imageSize: CGSize(width: 500, height: 5), timestamp: nil, sender: self.otherParticipants[1], category: .Incoming)
+                                                  TPTextMessage(id: "18", text: "How is it?", timestamp: nil, sender: me, category: .Outgoing),*/
+                                                  TPPictureMessage(id: "19", imageURL: "https://i.picsum.photos/id/1074/5472/3648.jpg", imageSize: CGSize(width: 300, height: 200), timestamp: nil, sender: me, category: .Outgoing),
+                                                  TPTextMessage(id: "10", text: "Wow!!🤩", timestamp: nil, sender: self.otherParticipants.first!, category: .Incoming),
+//                                                  TPPictureMessage(id: "20", imageURL: "https://google.com", imageSize: CGSize(width: 100, height: 200), timestamp: nil, sender: me, category: .Outgoing),
+//                                                  TPPictureMessage(id: "21", imageURL: "https://google.com", imageSize: CGSize(width: 150, height: 150), timestamp: nil, sender: me, category: .Outgoing),
+//                                                  TPPictureMessage(id: "22", imageURL: "https://google.com", imageSize: CGSize(width: 500, height: 5), timestamp: nil, sender: self.otherParticipants[1], category: .Incoming)
                                                 ]
     
     private lazy var messages : [TPMessage] = []
@@ -317,7 +317,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         let newMessage = TPTextMessage(id: "\(self.messages.count)", text: self.toolbar.textView!.text!.trimmingCharacters(in: .whitespacesAndNewlines), timestamp: Date(), sender: me, category: .Outgoing)
         self.addNewMessage(message: newMessage)
         self.toolbar.textView?.text = ""
-        self.toolbar.updateToolbarHeight()
+        self.toolbar.updateToolbar()
         self.toolbar.sendButton?.isEnabled = false        
     }
     
@@ -338,7 +338,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     
     func textViewDidChange(_ textView: UITextView) {
         //Update toolbar height
-        self.toolbar.updateToolbarHeight()
+        self.toolbar.updateToolbar()
     }
     
     
@@ -347,6 +347,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
             textView.text = ""
             textView.textColor = TOOLBAR_TEXTVIEW_TEXT_COLOR
         }
+        self.toolbar.updateToolbar()
     }
     
 
@@ -355,7 +356,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
             textView.text = INPUT_FIELD_PLACEHOLDER
             textView.textColor = UIColor.lightGray
         }
-        self.toolbar.updateToolbarHeight()
+        self.toolbar.updateToolbar()
     }
     
     
