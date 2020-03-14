@@ -51,6 +51,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         toolbar.sendButton?.addTarget(self, action: #selector(didClickSendButton(sender:)), for: .touchUpInside)
         toolbar.sendButton?.isEnabled = false
         toolbar.textView?.delegate = self
+        toolbar.attachmentButton?.addTarget(self, action: #selector(didClickAttachmentButton(sender:)), for: .touchUpInside)
         return toolbar
     }()
     
@@ -312,7 +313,7 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
     }
     
     
-    //MARK:- Send Button Targets
+    //MARK:- Send Button Handler
     @IBAction func didClickSendButton(sender: UIButton){
         let newMessage = TPTextMessage(id: "\(self.messages.count)", text: self.toolbar.textView!.text!.trimmingCharacters(in: .whitespacesAndNewlines), timestamp: Date(), sender: me, category: .Outgoing)
         self.addNewMessage(message: newMessage)
@@ -321,6 +322,29 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
         self.toolbar.sendButton?.isEnabled = false        
     }
     
+    
+    //MARK: Attachment Button Handler
+    @IBAction func didClickAttachmentButton(sender: UIButton) {
+        let attachmentOptionController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { (cameraAction) in
+            //show camera
+        }
+        attachmentOptionController.addAction(cameraAction)
+        
+        let photoAction = UIAlertAction(title: "Photo", style: .default) { (photoAction) in
+            //show photos
+        }
+        attachmentOptionController.addAction(photoAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancelAction) in
+            attachmentOptionController.dismiss(animated: true, completion: nil)
+        }
+        attachmentOptionController.addAction(cancelAction)
+        
+        self.present(attachmentOptionController, animated: true, completion: nil)
+        
+    }
     
     //MARK:- TextView Delegates
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -387,16 +411,16 @@ class TPChatViewController: UIViewController, UITextViewDelegate, UICollectionVi
 
 
 
-extension TPChatViewController: TPDownloadManagerDelegate{
-    func tpDownloadManager(_ manager: TPDownloadManager, didFailToDownloadFromURL remoteURL: URL, withError error: Error?) {
-        print(#function, error)
-    }
-    
-    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileChunkFromURL remoteURL: URL, withProgress progress: Double) {
-        print(#function, progress)
-    }
-    
-    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileFromURL remoteURL: URL, toLocation location: URL) {
-        print(#function, location)
-    }
-}
+//extension TPChatViewController: TPDownloadManagerDelegate{
+//    func tpDownloadManager(_ manager: TPDownloadManager, didFailToDownloadFromURL remoteURL: URL, withError error: Error?) {
+//        print(#function, error)
+//    }
+//
+//    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileChunkFromURL remoteURL: URL, withProgress progress: Double) {
+//        print(#function, progress)
+//    }
+//
+//    func tpDownloadManager(_ manager: TPDownloadManager, didDownloadFileFromURL remoteURL: URL, toLocation location: URL) {
+//        print(#function, location)
+//    }
+//}

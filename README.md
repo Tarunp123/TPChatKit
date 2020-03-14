@@ -1,29 +1,13 @@
 # TPChatKit
 Simple, elegant &amp; easy-to-integrate chat interface for your app.
 
-![TPChatKit Quick Demo Video](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/TPChatKitDynamicHeightSupport-Demo.gif)
+![TPChatKit Quick Demo Video](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/TPChatKit-Demo.gif)
 
 
 
 ## Screenshots
-**1. Group Chat & Single Chat**
 
-![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SingleChat_Dark_Mode.png) &nbsp;&nbsp;
-
-
-
-**2. iPad Split View**
-![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView1.PNG)
-
-**3. iPad Split View**
-![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView2.PNG)
-
-**4. iPad Split View**
-![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/SplitView3.PNG)
-
-**5. iPad Landscape**
-![TPChatKit iPad SlideOver Layout](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/iPad_Landscape.PNG)
-
+![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat_Light.png) &nbsp;&nbsp; ![TPChatKit Single Chat](https://github.com/Tarunp123/TPChatKit/blob/master/public_resources/GroupChat_Dark.png) &nbsp;&nbsp;
 
 
 
@@ -34,7 +18,7 @@ Simple, elegant &amp; easy-to-integrate chat interface for your app.
 3. Supports **Single and Group Chat**
 4. Supports **Custom Message Bubble Template Image**
 5. **Message Grouping** 
-6. Supports **Dynamic Height** for Input Toolbar
+6. Supports **Dark Mode** for Input Toolbar
 
 
 
